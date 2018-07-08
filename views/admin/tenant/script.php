@@ -1,6 +1,6 @@
 <script>
-    $(document).ready(function () {
-//        e.preventDefault;
+    $(document).ready(function (e) {
+//        e.preventDefault();
         $(".checkIfExists").change(function () {
             var email = $(".checkIfExists").val();
             $.get("http://localhost/apartment-rental-mgt/landlord/checkEmailExists/" + email, function (response) {
@@ -23,8 +23,8 @@
         });
     }
 
-    function checkPassword() {
-//        event.preventDefault;
+    function checkPassword(event) {
+        event.preventDefault();
         var password = $("#pass").val();
         var cfpassword = $("#cfpass").val();
         if (password !== cfpassword) {

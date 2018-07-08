@@ -72,7 +72,7 @@
                 <h4 class="modal-title">Add New Tenant</h4>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="<?php echo URL ?>landlord/handleCreateTenant">
+                <form role="form" method="post" action="<?php echo URL ?>landlord/handleCreateTenant" onsubmit="checkPassword(event)">
                     <div class="box-body">
 
                         <div class="form-group">
@@ -117,7 +117,7 @@
                         <div class="form-group">
                             <label for="password">Confirm Password</label>
                             <input type="password" class="form-control" id="cfpass" 
-                                   placeholder="Confirm password" onchange="checkPassword();">
+                                   placeholder="Confirm password">
                         </div>
 
                         <div class="alert alert-warning alert-dismissable hidden" id="passworderror">
