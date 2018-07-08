@@ -1,13 +1,17 @@
 <script>
     $(document).ready(function (e) {
 //        e.preventDefault();
-        $(".checkIfExists").change(function () {
+        $(".checkIfExists").change(function (e) {
+            e.preventDefault();
             var email = $(".checkIfExists").val();
             $.get("http://localhost/apartment-rental-mgt/landlord/checkEmailExists/" + email, function (response) {
                 $.each(JSON.parse(response), function (response, value) {
                     if (value.email === email) {
                         console.log("Already exists");
-                        $("#error").removeClass("hidden");
+                        $("#errorMessage").removeClass("hidden");
+//                        $('#success').html("<div id='message'></div>");
+                        $('#errorMessage').append("<h4>Email already exists</h4>")
+                                .delay(3000).fadeOut(3000);
                     }
 //                    console.log(response);
                 });
@@ -28,7 +32,9 @@
         var password = $("#pass").val();
         var cfpassword = $("#cfpass").val();
         if (password !== cfpassword) {
-            $("#passworderror").removeClass('hidden');
+            $("#errorMessage").removeClass('hidden');
+            $('#errorMessage').append("<h4>Passwords do not match</h4>")
+                    .delay(3000).fadeOut(3000);
         }
     }
 

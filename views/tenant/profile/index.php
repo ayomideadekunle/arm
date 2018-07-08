@@ -33,14 +33,11 @@ $profile_data = $this->tenant_info;
             </form>
 
             <div id="success">
-                <?php // echo $this->success_msg; ?>
             </div>
 
             <div id="errorMessage">
-                <?php // echo $this->error_msg; ?>
             </div>
 
-            <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
         </div><!-- /.box-body -->
     </div>
 

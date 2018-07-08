@@ -45,7 +45,7 @@
                                         </a>-->
                                         <button onclick="edit_Tenant('<?php echo $tenant['id']; ?>');" class="btn btn-success btn-sm">Edit</button>
                                         <button onclick="delete_Tenant('<?php echo $tenant['id']; ?>');" class="btn btn-danger btn-sm">Delete</button>
-<!--                                        <a href="<?php echo URL; ?>landlord/deletetenant/<?php echo $tenant['id']; ?>" class="btn btn-danger btn-sm">
+    <!--                                        <a href="<?php echo URL; ?>landlord/deletetenant/<?php echo $tenant['id']; ?>" class="btn btn-danger btn-sm">
                                             Delete
                                         </a>-->
                                     </td>
@@ -72,6 +72,13 @@
                 <h4 class="modal-title">Add New Tenant</h4>
             </div>
             <div class="modal-body">
+                
+                <div id="success" class="alert alert-success hidden" role="alert">
+                </div>
+
+                <div id="errorMessage" class="alert alert-danger hidden" role="alert">
+                </div>
+                
                 <form role="form" method="post" action="<?php echo URL ?>landlord/handleCreateTenant" onsubmit="checkPassword(event)">
                     <div class="box-body">
 
@@ -89,10 +96,6 @@
                             <label for="email">Email</label>
                             <input type="email" class="form-control checkIfExists" placeholder="Enter Email" name="email">
                         </div>
-                        
-                        <div class="alert alert-warning alert-dismissable hidden" id="error">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <i class="icon fa fa-warning"></i>Email Already Exists</div>
 
                         <div class="form-group">
                             <label for="phone">Phone</label>
@@ -119,10 +122,6 @@
                             <input type="password" class="form-control" id="cfpass" 
                                    placeholder="Confirm password">
                         </div>
-
-                        <div class="alert alert-warning alert-dismissable hidden" id="passworderror">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <i class="icon fa fa-warning"></i> Password Mismatch</div>
 
                     </div><!-- /.box-body -->
 
