@@ -64,11 +64,6 @@ class Landlord extends Controller {
 
     public function handleCreateTenant() {
         $this->model->addTenant();
-//        if ($tenant === "fail") {
-//            echo 'Email Adress Already Exist';
-//        } else {
-//            // header("Location: " . URL . 'admin/tenants');
-//        }
     }
 
     public function handleLeaseContract() {
@@ -81,26 +76,6 @@ class Landlord extends Controller {
 
     public function handleSecurityRefund() {
         $this->model->securityRefund();
-    }
-
-    // Create Form Pages
-
-    public function secRefundCreatePage() {
-        Session::init();
-        if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
-// render create page
-        } else {
-// render login page
-        }
-    }
-
-    public function mntCatCreatePage() {
-        Session::init();
-        if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
-// render create page
-        } else {
-// render login page
-        }
     }
 
     // Edit Form Pages
@@ -166,11 +141,12 @@ class Landlord extends Controller {
         }
     }
 
-    public function securityRefundEditPage() {
+    public function securityRefundEditPage($id) {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
-            $this->view->secRefundData = $this->model->fndSecurityRefundById();
+            $this->view->secRefundData = $this->model->fndSecurityRefundById($id);
 // render edit page
+            $this->view->render("admin/security-refund/edit");
         } else {
 // render login page
         }
@@ -182,8 +158,8 @@ class Landlord extends Controller {
         $this->model->updateMaintCat();
     }
 
-    public function editSecurityRefund() {
-        $this->model->updateSecRfnd();
+    public function editSecurityRefund($id) {
+        $this->model->updateSecRfnd($id);
     }
 
     public function editBuiding() {
@@ -247,8 +223,11 @@ class Landlord extends Controller {
     public function secRefundList() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
-            $this->view->secRefunds = $this->model->securityRefunds();
+            $this->view->refunds = $this->model->securityRefunds();
 // render list page
+            $this->view->render("navigation/header");
+            $this->view->render("admin/security-refund/index");
+            $this->view->render("navigation/footer");
         } else {
 // render login page
         }
@@ -344,6 +323,10 @@ class Landlord extends Controller {
 
     public function deleteLease($id) {
         $this->model->delLeaseContractById($id);
+    }
+
+    public function deleteRefund($id) {
+        $this->model->delSecurityRefundById($id);
     }
 
 }

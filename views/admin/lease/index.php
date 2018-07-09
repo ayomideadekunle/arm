@@ -103,6 +103,13 @@ $l_mod = new Landlord_Model();
                 <h4 class="modal-title">Add Lease Contract</h4>
             </div>
             <div class="modal-body">
+
+                <div id="success" class="alert alert-success hidden" role="alert">
+                </div>
+
+                <div id="errorMessage" class="alert alert-danger hidden" role="alert">
+                </div>
+
                 <form role="form" method="post" action="<?php echo URL ?>landlord/handleLeaseContract">
                     <div class="box-body">
 
@@ -124,10 +131,6 @@ $l_mod = new Landlord_Model();
                                 <?php } ?>
                             </select>
                         </div>
-
-                        <div class="alert alert-warning alert-dismissable hidden" id="error">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                            <i class="icon fa fa-warning"></i>Already Exists</div>
 
                         <div class="form-group">
                             <label>Building</label>

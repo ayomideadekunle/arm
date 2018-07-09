@@ -213,7 +213,6 @@ class Landlord_Model extends Model {
 
     public function updateTenant($tenant_id = '') {
         global $DATABASE;
-        $check_email_exists = $this->email_exists();
         $tenantData = array(
             'firstname' => $_POST['firstname'],
             'lastname' => $_POST['lastname'],
@@ -286,9 +285,8 @@ class Landlord_Model extends Model {
         $DATABASE->update('maintenance_category', $catData, 'id=' . $cat_id);
     }
 
-    public function updateSecRfnd() {
+    public function updateSecRfnd($secRfndId = '') {
         global $DATABASE;
-        $secRfndId = $this->currentUserid();
 
         $secRfdData = array(
             'refundAmount' => $_POST['refundAmount'],

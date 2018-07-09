@@ -12,6 +12,8 @@
         $(".delete").click(function () {
             $.get("http://localhost/apartment-rental-mgt/landlord/deleteapartment/" + id, function (resp) {
                 alert("Deleted");
+                $("#delete_apartment").modal('hide');
+                location = "http://localhost/apartment-rental-mgt/landlord/apartmentList";
             });
         });
         $(".cancel").click(function () {

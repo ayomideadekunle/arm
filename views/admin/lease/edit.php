@@ -93,26 +93,27 @@ foreach ($edit_data as $value) {
 
 <script type="text/javascript">
 
-//    $(document).ready(function () {
+    document.addEventListener('onload', function(){
 //        window.onload(function (){
-            
+
 //        })
-        // populate apartment dropdown based on building selected
-//        alert("Ready");
-//        $(".buildingsSelect").change(function () {
-//            var id = $(this).val();
-//            $.get("http://localhost/apartment-rental-mgt/landlord/fetchApartments/" + id, function (response) {
-//                var apartmentNumber = $(".apartmentNumber");
-//                var availabileText = $(".availability");
-//                apartmentNumber.empty();
-//                $.each(JSON.parse(response), function (response, item) {
-//                    console.log(item);
-//                    apartmentNumber.append($("<option />", {
-//                        value: item.id,
-//                        text: item.apartmentNumber + ' ' + item.apartmentType
-//                    }));
-//                });
-//            });
-//        });
-//    });
+//         populate apartment dropdown based on building selected
+    alert("Ready");
+    $(".buildingsSelect").change(function () {
+    var id = $(this).val();
+            $.get("http://localhost/apartment-rental-mgt/landlord/fetchApartments/" + id, function (response) {
+            var apartmentNumber = $(".apartmentNumber");
+                    var availabileText = $(".availability");
+                    apartmentNumber.empty();
+                    $.each(JSON.parse(response), function (response, item) {
+                    console.log(item);
+                            apartmentNumber.append($("<option />", {
+                            value: item.id,
+                                    text: item.apartmentNumber + ' ' + item.apartmentType
+                            }));
+                    });
+            });
+    });
+    }
+    );
 </script>

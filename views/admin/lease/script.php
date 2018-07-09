@@ -1,10 +1,12 @@
 <script>
 
-    $(document).ready(function () {
+    $(document).ready(function (e) {
         // alert("Ready");
+//        e.preventDefault();
 
         // populate apartment dropdown based on building selected
-        $(".buildingsSelect").change(function () {
+        $(".buildingsSelect").change(function (e) {
+            e.preventDefault();
             var id = $(this).val();
             // console.log(id);
             $.get("http://localhost/apartment-rental-mgt/landlord/fetchApartments/" + id, function (response) {
@@ -25,7 +27,8 @@
         });
         // check if user chosen is already in the lease contract table
 
-        $(".checkIfExists").change(function () {
+        $(".checkIfExists").change(function (e) {
+            e.preventDefault();
             var userid = $(this).val();
             // console.log(userid);
             $.get("http://localhost/apartment-rental-mgt/landlord/tenantExists/" + userid, function (result) {
@@ -34,7 +37,9 @@
                 $.each(JSON.parse(result), function (result, value) {
                     if (currentTenant === value.tenant_id) {
                         // alert("Already existed");
-                        $("#error").removeClass("hidden");
+                        $("#errorMessage").removeClass("hidden");
+                        $('#errorMessage').append("<h4>User already exists</h4>")
+                                .delay(3000).fadeOut(3000);
                     }
                 })
             })
@@ -53,6 +58,8 @@
         $(".delete").click(function () {
             $.get("http://localhost/apartment-rental-mgt/landlord/deleteLease/" + id, function (resp) {
                 alert("Deleted");
+                $("#delete_lease").modal('hide');
+                location = "http://localhost/apartment-rental-mgt/landlord/leaseContractList";
             });
         });
         $(".cancel").click(function () {
