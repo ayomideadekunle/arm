@@ -275,9 +275,8 @@ class Landlord_Model extends Model {
         $DATABASE->update('building', $buildingData, 'id=' . $building_id);
     }
 
-    public function updateMaintCat() {
+    public function updateMaintCat($cat_id = '') {
         global $DATABASE;
-        $cat_id = $this->currentUserid();
 
         $catData = array(
             'categoryName' => $_POST['categoryName']

@@ -131,11 +131,12 @@ class Landlord extends Controller {
         }
     }
 
-    public function maintenanceCatEditPage() {
+    public function maintenanceCatEditPage($id) {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
-            $this->view->mntcCatData = $this->model->fndMaintenanceCatById();
+            $this->view->mntcCatData = $this->model->fndMaintenanceCatById($id);
 // render edit page
+            $this->view->render('admin/maintenance-category/edit');
         } else {
 // render login page
         }
@@ -154,8 +155,8 @@ class Landlord extends Controller {
 
     // Update Method Controller
 
-    public function editMaintenanceCat() {
-        $this->model->updateMaintCat();
+    public function editMaintenanceCat($id) {
+        $this->model->updateMaintCat($id);
     }
 
     public function editSecurityRefund($id) {
@@ -238,6 +239,9 @@ class Landlord extends Controller {
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->maintenanceCats = $this->model->maintenanceCats();
 // render list page
+            $this->view->render("navigation/header");
+            $this->view->render("admin/maintenance-category/index");
+            $this->view->render("navigation/footer");
         } else {
 // render login page
         }
@@ -313,12 +317,10 @@ class Landlord extends Controller {
 
     public function deleteapartment($id) {
         $this->model->delApartmentById($id);
-//        header("Location:" . URL . 'admin/sent_notifications');
     }
 
     public function deletetenant($id) {
         $this->model->delTenantById($id);
-//        header("Location:" . URL . 'admin/sent_notifications');
     }
 
     public function deleteLease($id) {
@@ -327,6 +329,10 @@ class Landlord extends Controller {
 
     public function deleteRefund($id) {
         $this->model->delSecurityRefundById($id);
+    }
+
+    public function deleteMntCat($id) {
+        $this->model->delMaintenanceCatById($id);
     }
 
 }
