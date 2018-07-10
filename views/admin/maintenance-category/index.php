@@ -4,7 +4,7 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Security Refund</h3>
+                    <h3 class="box-title">Maintenance Categories</h3>
                     <span class="pull-right">
                         <button class="btn btn-primary" data-target="#new_mntcat" data-toggle="modal">
                             Add Category

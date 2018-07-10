@@ -264,7 +264,7 @@ class Landlord_Model extends Model {
         // return false;
     }
 
-    public function updateBuilding() {
+    public function updateBuilding($building_id = '') {
         global $DATABASE;
 
         $buildingData = array(
@@ -432,10 +432,23 @@ class Landlord_Model extends Model {
         $DATABASE->delete("apartment", "id =" . $id);
     }
 
-    public function delBuildingById($id) {
-        global $DATABASE;
-        $DATABASE->delete("building", "id =" . $id);
-    }
+//    public function delBuildingById($id) {
+//        global $DATABASE;
+//
+//        $postData = array(
+//            'building_id' => 0,
+//            'apartment_id' => 0
+//        );
+//
+//        $query = "UPDATE lease SET building_id = 0, apartment_id = 0 WHERE building_id = '$id'";
+//
+//        $DATABASE->startTransaction();
+//        $DATABASE->delete("building", "id =" . $id);
+//        $DATABASE->delete('apartment', 'building_id= ' . $id);
+//        $query = $DATABASE->update("lease", $postData, 'building_id =' . $id);
+//        $DATABASE->commitTransaction();
+//        echo $query;
+//    }
 
     public function delLeaseContractById($id) {
         global $DATABASE;

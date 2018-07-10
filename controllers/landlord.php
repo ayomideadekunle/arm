@@ -80,11 +80,12 @@ class Landlord extends Controller {
 
     // Edit Form Pages
 
-    public function buildingEditPage() {
+    public function buildingEditPage($id) {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
-            $this->view->buildingData = $this->model->fndBuildingById();
+            $this->view->buildingData = $this->model->fndBuildingById($id);
 // render edit page
+            $this->view->render('admin/building/edit');
         } else {
 // render login page
         }
@@ -163,8 +164,8 @@ class Landlord extends Controller {
         $this->model->updateSecRfnd($id);
     }
 
-    public function editBuiding() {
-        $this->model->updateBuilding();
+    public function editBuiding($id) {
+        $this->model->updateBuilding($id);
     }
 
     public function editApartment($id) {
@@ -252,6 +253,9 @@ class Landlord extends Controller {
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->buildings = $this->model->buildings();
 // render list page
+            $this->view->render("navigation/header");
+            $this->view->render("admin/building/index");
+            $this->view->render("navigation/footer");
         } else {
 // render login page
         }
@@ -334,5 +338,9 @@ class Landlord extends Controller {
     public function deleteMntCat($id) {
         $this->model->delMaintenanceCatById($id);
     }
+
+//    public function deleteBuilding($id) {
+//        $this->model->delBuildingById($id);
+//    }
 
 }

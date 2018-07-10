@@ -54,9 +54,11 @@ $l_mod = new Landlord_Model();
                                     <?php
                                     $building_infos = $l_mod->buildingInfo($contract['building_id']);
                                     foreach ($building_infos as $building) {
-//                                      print_r($building_infos);
                                         ?>
-                                        <td><?php echo $building['buildingName']; ?> </td>
+                                        <td><?php
+                                            echo $building['buildingName'];
+                                            ?>
+                                        </td>
                                     <?php } ?>
                                     <?php
                                     $apartment_infos = $l_mod->apartmentInfo($contract['apartment_id']);
