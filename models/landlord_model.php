@@ -340,7 +340,7 @@ class Landlord_Model extends Model {
 
     public function buildings() {
         global $DATABASE;
-        return $DATABASE->select("select * from building");
+        return $DATABASE->select("select * from building where isDeleted = 0");
     }
 
     public function tenants() {
@@ -432,23 +432,15 @@ class Landlord_Model extends Model {
         $DATABASE->delete("apartment", "id =" . $id);
     }
 
-//    public function delBuildingById($id) {
-//        global $DATABASE;
-//
-//        $postData = array(
-//            'building_id' => 0,
-//            'apartment_id' => 0
-//        );
-//
-//        $query = "UPDATE lease SET building_id = 0, apartment_id = 0 WHERE building_id = '$id'";
-//
+    public function softDeleteBuilding($id) {
+        global $DATABASE;
+
+        $softDeletequery = "UPDATE building SET isDeleted = 1 WHERE id = '$id'";
+
 //        $DATABASE->startTransaction();
-//        $DATABASE->delete("building", "id =" . $id);
-//        $DATABASE->delete('apartment', 'building_id= ' . $id);
-//        $query = $DATABASE->update("lease", $postData, 'building_id =' . $id);
+        $DATABASE->select($softDeletequery);
 //        $DATABASE->commitTransaction();
-//        echo $query;
-//    }
+    }
 
     public function delLeaseContractById($id) {
         global $DATABASE;

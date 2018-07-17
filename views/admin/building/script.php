@@ -13,7 +13,7 @@
             $.get("http://localhost/apartment-rental-mgt/landlord/deleteBuilding/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_building").modal('hide');
-                location = "http://localhost/apartment-rental-mgt/landlord/buildingList";
+                location = "http://localhost/apartment-rental-mgt/landlord/buildings";
 //                window.reload;
             });
         });

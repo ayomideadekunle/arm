@@ -23,7 +23,6 @@
                 location = "http://localhost/apartment-rental-mgt/landlord/tenantProfile";
             }
         </script>
-
     </head>
     <body class="hold-transition skin-blue sidebar-mini">
         <div class="wrapper">
@@ -50,7 +49,7 @@
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <!--<img src="<?php echo URL; ?>public/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
-                                    <span class="hidden-xs">
+                                    <span>
                                         <?php
                                         echo $_SESSION['fullname'];
                                         ?>
@@ -70,7 +69,6 @@
                                             <button class="btn btn-default btn-flat" onclick="showProfile();">Profile</button>
                                         </div>
                                         <div class="pull-right">
-                                            <!--<button class="btn btn-danger btn-flat logout_link">Sign out</button>-->
                                             <button onclick="logout();" class="btn btn-danger btn-flat" id="logout_link">Sign out</button>
                                         </div>
                                     </li>
@@ -90,18 +88,21 @@
                         <li class="header">NAVIGATION MENU</li>
                         <li>
                             <a href="">
-                                <i class="fa fa-th"></i> <span>Dashboard</span>
+                                <i class="fa fa-home"></i> <span>Dashboard</span>
                             </a>
                         </li>
-                        <!-- <li><a href=""><i class="fa fa-plus"></i> <span>Request Maintenance</span></a></li> -->
-                        <li><a href="<?php echo URL; ?>landlord"><i class="fa fa-plus"></i> <span>Test Page</span></a></li>
-                        <li><a href=""><i class="fa fa-building-o"></i> <span>Change Apartment</span></a></li>
-                        <li><a href=""><i class="fa fa-th"></i> <span>Lease Contract</span></a></li>
-                        <li><a href=""><i class="fa fa-plus"></i> <span>Renewal</span></a></li>
-                        <li><a href=""><i class="fa fa-money"></i> <span>Payment</span></a></li>
-                        <li><a href=""><i class="fa fa-times"></i> <span>Termination</span></a></li>
-                        <li><a href=""><i class="fa fa-th"></i> <span>Notification</span></a></li>
-                        <li><a href=""><i class="fa fa-sign-out"></i> <span>Log out</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/buildings"><i class="fa fa-building-o"></i> <span>Buildings</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/apartments"><i class="fa fa-building-o"></i> <span>Apartments</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/tenants"><i class="fa fa-users"></i> <span>Tenants</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/maintenanceRequests"><i class="fa fa-list"></i> <span>Maintenance Requests</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/changedApartments"><i class="fa fa-list"></i> <span>Changed Apartments</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/leaseContracts"><i class="fa fa-list"></i> <span>Lease Contracts</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/renewedContracts"><i class="fa fa-list"></i> <span>Renewals</span></a></li>
+                        <!--<li><a href="<?php echo URL; ?>landlord/"><i class="fa fa-money"></i> <span>Payment</span></a></li>-->
+                        <li><a href="<?php echo URL; ?>landlord/terminatedContracts"><i class="fa fa-list"></i> <span>Terminated Contracts</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/securityRefunds"><i class="fa fa-list"></i> <span>Security Refunds</span></a></li>
+                        <li><a href="<?php echo URL; ?>landlord/maintenanceCategories"><i class="fa fa-list"></i> <span>Maintenance Categories</span></a></li>
+                        <!--<li><a href=""><i class="fa fa-sign-out"></i> <span>Log out</span></a></li>-->
                     </ul>
                 </section>
                 <!-- /.sidebar -->

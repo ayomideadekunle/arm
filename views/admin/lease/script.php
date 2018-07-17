@@ -1,7 +1,7 @@
 <script>
 
     $(document).ready(function (e) {
-        // alert("Ready");
+//         alert("Ready");
 //        e.preventDefault();
 
         // populate apartment dropdown based on building selected

@@ -5,6 +5,7 @@ class Landlord extends Controller {
     function __construct() {
         parent::__construct();
         $this->loadmodel("index");
+        $this->view->js = array("admin/lease/script.js");
     }
 
     // Dashboard Page
@@ -46,9 +47,12 @@ class Landlord extends Controller {
     public function change_pwd() {
         $changePwdModel = $this->model->chngPassword();
         if ($changePwdModel == true) {
-            $this->view->success_msg = "Password changed successfully";
+//            $success_msg = "Password changed successfully";
+            echo "Password changed successfully";
         } else {
-            $this->view->error_msg = "Incorrect password";
+//            $error_msg = "Incorrect password";
+            echo "Incorrect password";
+//            header("http://localhost/apartment-rental-mgt/landlord/tenantProfile");
         }
     }
 
@@ -182,7 +186,7 @@ class Landlord extends Controller {
 
     // List Pages
 
-    public function maintenanceRequestist() {
+    public function maintenanceRequests() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->mntncReqs = $this->model->maintenanceReqs();
@@ -192,7 +196,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function changeApartmentList() {
+    public function changedApartments() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->aprtChngReqs = $this->model->changeOfApartmentReqs();
@@ -202,7 +206,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function renewedContractList() {
+    public function renewedContracts() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->renewdContracts = $this->model->rnwdContracts();
@@ -212,7 +216,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function terminatedContractList() {
+    public function terminatedContracts() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->terminatedContracts = $this->model->terminatedCntracts();
@@ -222,7 +226,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function secRefundList() {
+    public function securityRefunds() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->refunds = $this->model->securityRefunds();
@@ -235,7 +239,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function maintenanceCatList() {
+    public function maintenanceCategories() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->maintenanceCats = $this->model->maintenanceCats();
@@ -248,7 +252,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function buildingList() {
+    public function buildings() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->buildings = $this->model->buildings();
@@ -261,7 +265,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function apartmentList() {
+    public function apartments() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->apartments = $this->model->apartments();
@@ -275,7 +279,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function leaseContractList() {
+    public function leaseContracts() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->tenants = $this->model->tenants();
@@ -291,7 +295,7 @@ class Landlord extends Controller {
         }
     }
 
-    public function tenantList() {
+    public function tenants() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->tenants = $this->model->tenants();
@@ -339,8 +343,7 @@ class Landlord extends Controller {
         $this->model->delMaintenanceCatById($id);
     }
 
-//    public function deleteBuilding($id) {
-//        $this->model->delBuildingById($id);
-//    }
-
+    public function deleteBuilding($id) {
+        $this->model->softDeleteBuilding($id);
+    }
 }

@@ -34,8 +34,8 @@
                                     <td><?php echo $building['address']; ?> </td>
                                     <td><?php echo $building['cityStateZip']; ?> </td>
                                     <td>
-                                        <button onclick="edit_Building('<?php echo $building['id']; ?>');" class="btn btn-success btn-sm">Edit</button>
-                                        <!--<button onclick="delete_Building('<?php echo $building['id']; ?>');" class="btn btn-danger btn-sm">Delete</button>-->
+                                        <button onclick="edit_Building('<?php echo $building['id']; ?>');" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                                        <button onclick="delete_Building('<?php echo $building['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php $count++; ?>
