@@ -12,7 +12,7 @@
                     </span>
                 </div>
                 <div class="box-body">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped" id="data_table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -125,3 +125,9 @@
 <?php
 require 'script.php';
 ?>
+
+<script>
+    $(function () {
+        $("#data_table").DataTable();
+    });
+</script>

@@ -12,6 +12,7 @@
         <!-- Theme style -->
         <link rel="stylesheet" href="<?php echo URL; ?>public/dist/css/AdminLTE.min.css">
         <link rel="stylesheet" href="<?php echo URL; ?>public/dist/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="<?php echo URL; ?>public/dist/css/dataTables.bootstrap.css">
         <script src="<?php echo URL; ?>public/jquery.js"></script>
 
         <script>

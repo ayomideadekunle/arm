@@ -13,12 +13,36 @@
             $.get("http://localhost/apartment-rental-mgt/landlord/deleteapartment/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_apartment").modal('hide');
-                location = "http://localhost/apartment-rental-mgt/landlord/apartmentList";
+                location = "http://localhost/apartment-rental-mgt/landlord/apartments";
             });
         });
         $(".cancel").click(function () {
             $("#delete_apartment").modal("hide");
         })
 
+    }
+
+    function processSubmission() {
+        $(".apartmentForm").submit(function () {
+            var postData = $(this).serialize();
+            var url = $(this).attr("action");
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: postData,
+                success: function (data) {
+//                    alert("Successful");
+                    $("#success").removeClass("hidden");
+                    $('#success').append("<h4>Successfull!!!</h4>").delay(3000).fadeOut(3000);
+
+                    $("#new_apartment").modal("hide");
+                },
+                error: function () {
+                }
+            });
+            return false;
+        });
+//        event.preventDefault();
     }
 </script>

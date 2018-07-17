@@ -59,7 +59,7 @@
             $.get("http://localhost/apartment-rental-mgt/landlord/deleteLease/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_lease").modal('hide');
-                location = "http://localhost/apartment-rental-mgt/landlord/leaseContractList";
+                location = "http://localhost/apartment-rental-mgt/landlord/leaseContracts";
             });
         });
         $(".cancel").click(function () {

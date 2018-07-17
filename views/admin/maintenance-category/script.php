@@ -13,7 +13,7 @@
             $.get("http://localhost/apartment-rental-mgt/landlord/deleteMntCat/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_mntcat").modal('hide');
-                location = "http://localhost/apartment-rental-mgt/landlord/maintenanceCatList";
+                location = "http://localhost/apartment-rental-mgt/landlord/maintenanceCategories";
 //                window.reload;
             });
         });

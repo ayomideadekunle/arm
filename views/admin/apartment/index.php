@@ -15,7 +15,7 @@ $l_mod = new Landlord_Model();
                     </span>
                 </div>
                 <div class="box-body">
-                    <table class="table table-bordered table-striped">
+                    <table id="data_table" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -73,7 +73,15 @@ $l_mod = new Landlord_Model();
                 <h4 class="modal-title">Add New Apartment</h4>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="<?php echo URL ?>landlord/handleCreateApartment">
+
+                <div id="success" class="alert alert-success hidden" role="alert">
+                </div>
+
+                <div id="errorMessage" class="alert alert-danger hidden" role="alert">
+                </div>
+
+                <form role="form" class="apartmentForm" onclick="processSubmission()"
+                      action="<?php echo URL ?>landlord/handleCreateApartment">
                     <div class="box-body">
 
                         <div class="form-group">
@@ -169,3 +177,9 @@ $l_mod = new Landlord_Model();
 <?php
 require 'script.php';
 ?>
+
+<script>
+    $(function () {
+        $("#data_table").DataTable();
+    });
+</script>

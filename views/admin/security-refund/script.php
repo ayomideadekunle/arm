@@ -13,7 +13,7 @@
             $.get("http://localhost/apartment-rental-mgt/landlord/deleteRefund/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_refund").modal('hide');
-                location = "http://localhost/apartment-rental-mgt/landlord/secRefundList";
+                location = "http://localhost/apartment-rental-mgt/landlord/securityRefunds";
 //                window.reload;
             });
         });

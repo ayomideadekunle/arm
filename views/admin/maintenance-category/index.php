@@ -12,7 +12,7 @@
                     </span>
                 </div>
                 <div class="box-body">
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped" id="data_table">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -30,8 +30,8 @@
                                     <td><?php echo $count; ?></td>
                                     <td><?php echo $mntcat['categoryName']; ?> </td>
                                     <td>
-                                        <button onclick="edit_MntCat('<?php echo $mntcat['id']; ?>');" class="btn btn-success btn-sm">Edit</button>
-                                        <button onclick="delete_MntCat('<?php echo $mntcat['id']; ?>');" class="btn btn-danger btn-sm">Delete</button>
+                                        <button onclick="edit_MntCat('<?php echo $mntcat['id']; ?>');" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                                        <button onclick="delete_MntCat('<?php echo $mntcat['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php $count++; ?>
@@ -110,3 +110,10 @@
 <?php
 require 'script.php';
 ?>
+
+
+<script>
+    $(function () {
+        $("#data_table").DataTable();
+    });
+</script>
