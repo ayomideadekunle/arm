@@ -47,14 +47,8 @@ $l_mod = new Landlord_Model();
                                     <td><?php echo $apartment['rentalFee']; ?></td>
                                     <td><?php echo $apartment['size']; ?></td>
                                     <td>
-    <!--                                        <a href="<?php echo URL; ?>landlord/apartmentEditPage/<?php echo $apartment['id']; ?>" class="btn btn-success btn-sm">
-                                            Edit
-                                        </a>-->
-                                        <button onclick="edit_Apartment('<?php echo $apartment['id']; ?>');" class="btn btn-success btn-sm">Edit</button>
-                                        <button onclick="delete_Apartment('<?php echo $apartment['id']; ?>');" class="btn btn-danger btn-sm">Delete</button>
-    <!--                                        <a href="<?php echo URL; ?>landlord/deleteapartment/<?php echo $apartment['id']; ?>" class="btn btn-danger btn-sm">
-                                            Delete
-                                        </a>-->
+                                        <button onclick="edit_Apartment('<?php echo $apartment['id']; ?>');" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                                        <button onclick="delete_Apartment('<?php echo $apartment['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php $count++; ?>

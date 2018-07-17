@@ -73,14 +73,8 @@ $l_mod = new Landlord_Model();
                                     <td><?php echo $contract['period']; ?></td>
                                     <td><?php echo $contract['rentalDate']; ?></td>
                                     <td>
-    <!--                                        <a href="<?php echo URL; ?>landlord/apartmentEditPage/<?php echo $contract['id']; ?>" class="btn btn-success btn-sm">
-                                            Edit
-                                        </a>-->
-                                        <button onclick="edit_Lease('<?php echo $contract['id']; ?>');" class="btn btn-success btn-sm">Edit</button>
-                                        <button onclick="delete_Lease('<?php echo $contract['id']; ?>');" class="btn btn-danger btn-sm">Delete</button>
-                                        <!-- <a href="<?php echo URL; ?>landlord/deleteLease/<?php echo $contract['id']; ?>" class="btn btn-danger btn-sm">
-                                            Delete
-                                        </a> -->
+                                        <button onclick="edit_Lease('<?php echo $contract['id']; ?>');" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                                        <button onclick="delete_Lease('<?php echo $contract['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php $count++; ?>

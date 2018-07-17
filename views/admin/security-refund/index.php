@@ -37,8 +37,8 @@ $l_mod = new Landlord_Model();
                                     <td><?php echo $refund['refundReason']; ?></td>
                                     <td><?php echo $refund['date']; ?></td>
                                     <td>
-                                        <button onclick="edit_Refund('<?php echo $refund['id']; ?>');" class="btn btn-success btn-sm">Edit</button>
-                                        <button onclick="delete_Refund('<?php echo $refund['id']; ?>');" class="btn btn-danger btn-sm">Delete</button>
+                                        <button onclick="edit_Refund('<?php echo $refund['id']; ?>');" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                                        <button onclick="delete_Refund('<?php echo $refund['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php $count++; ?>

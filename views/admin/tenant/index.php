@@ -40,14 +40,8 @@
                                     <td><?php echo $tenant['currentAddress']; ?></td>
                                     <td><?php echo $tenant['cityStateZip']; ?></td>
                                     <td>
-    <!--                                        <a href="<?php echo URL; ?>landlord/tenantEditPage/<?php echo $tenant['id']; ?>" class="btn btn-success btn-sm">
-                                            Edit
-                                        </a>-->
-                                        <button onclick="edit_Tenant('<?php echo $tenant['id']; ?>');" class="btn btn-success btn-sm">Edit</button>
-                                        <button onclick="delete_Tenant('<?php echo $tenant['id']; ?>');" class="btn btn-danger btn-sm">Delete</button>
-    <!--                                        <a href="<?php echo URL; ?>landlord/deletetenant/<?php echo $tenant['id']; ?>" class="btn btn-danger btn-sm">
-                                            Delete
-                                        </a>-->
+                                        <button onclick="edit_Tenant('<?php echo $tenant['id']; ?>');" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                                        <button onclick="delete_Tenant('<?php echo $tenant['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php $count++; ?>
@@ -72,13 +66,13 @@
                 <h4 class="modal-title">Add New Tenant</h4>
             </div>
             <div class="modal-body">
-                
+
                 <div id="success" class="alert alert-success hidden" role="alert">
                 </div>
 
                 <div id="errorMessage" class="alert alert-danger hidden" role="alert">
                 </div>
-                
+
                 <form role="form" method="post" action="<?php echo URL ?>landlord/handleCreateTenant" onsubmit="checkPassword(event)">
                     <div class="box-body">
 
