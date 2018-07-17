@@ -11,10 +11,6 @@ class Tenant extends Controller {
     public function index() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
-            // to be deleted (testing purpose)
-            // $this->view->aprtments = $this->model->apartments();
-            // $this->view->building_infos = $this->model->buildingInfo();
 // display dashboard
             $this->view->render('navigation/header');
             $this->view->render('admin/apartment/index');
@@ -49,7 +45,6 @@ class Tenant extends Controller {
     public function mntReqCreatePage() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
 // render create page
         } else {
 // render login page
@@ -59,7 +54,6 @@ class Tenant extends Controller {
     public function contractTerminationCreatePage() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
 // render create page
         } else {
 // render login page
@@ -69,7 +63,6 @@ class Tenant extends Controller {
     public function chngAptReqCreatePage() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
 // render create page
         } else {
 // render login page
@@ -79,7 +72,6 @@ class Tenant extends Controller {
     public function contractRenewalCreatePage() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
 // render create page
         } else {
 // render login page
@@ -91,7 +83,6 @@ class Tenant extends Controller {
     public function mntReqEditPage() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
             $this->view->mntncData = $this->model->findMaintenanceRequestById();
 // render edit page
         } else {
@@ -102,7 +93,6 @@ class Tenant extends Controller {
     public function chngAptReqEditPage() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
             $this->view->chngAptData = $this->model->findChangeAptById();
 // render edit page
         } else {
@@ -113,7 +103,6 @@ class Tenant extends Controller {
     public function contractRenewalEditPage() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
             $this->view->renewalData = $this->model->findRenewedContractById();
 // render edit page
         } else {
@@ -124,7 +113,6 @@ class Tenant extends Controller {
     public function contractTerminationEditPage() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
             $this->view->terminationData = $this->model->findTerminatedContractById();
 // render edit page
         } else {
@@ -134,20 +122,20 @@ class Tenant extends Controller {
 
     // Update Method Controller
 
-    public function editMaintenanceRequest() {
-        $this->model->updateSendMaintenanceRequest();
+    public function editMaintenanceRequest($id) {
+        $this->model->updateSendMaintenanceRequest($id);
     }
 
-    public function editChngAptRequest() {
-        $this->model->updateChangeApartment();
+    public function editChngAptRequest($id) {
+        $this->model->updateChangeApartment($id);
     }
 
-    public function editContractRenewal() {
-        $this->model->updateRenewContract();
+    public function editContractRenewal($id) {
+        $this->model->updateRenewContract($id);
     }
 
-    public function editContractTermination() {
-        $this->model->updateTermination();
+    public function editContractTermination($id) {
+        $this->model->updateTermination($id);
     }
 
     // List Pages
@@ -155,7 +143,6 @@ class Tenant extends Controller {
     public function maintenanceRequestist() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
             $this->view->mntncRequests = $this->model->maintenanceRequests();
 // render list page
         } else {
@@ -166,7 +153,6 @@ class Tenant extends Controller {
     public function changeApartmentList() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
             $this->view->aprtChngRequests = $this->model->changeOfApartmentRequests();
 // render list page
         } else {
@@ -177,7 +163,6 @@ class Tenant extends Controller {
     public function renewedContractList() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
             $this->view->renewedContracts = $this->model->renewedContracts();
 // render list page
         } else {
@@ -188,7 +173,6 @@ class Tenant extends Controller {
     public function terminatedContractList() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            // $this->view->fullName = $this->model->get_fullName();
             $this->view->terminatedContracts = $this->model->terminatedContracts();
 // render list page
         } else {
