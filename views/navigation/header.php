@@ -49,10 +49,13 @@
                             <!-- User Account: style can be found in dropdown.less -->
                             <li class="dropdown user user-menu">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <!--<img src="<?php echo URL; ?>public/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
                                     <span>
                                         <?php
-                                        echo $_SESSION['fullname'];
+                                        if ($_SESSION['role'] == 'tenant') {
+                                            echo $_SESSION['fullname'];
+                                        } elseif ($_SESSION['role'] == 'admin') {
+                                            echo $_SESSION['username'];
+                                        }
                                         ?>
                                     </span>
                                 </a>
@@ -86,24 +89,30 @@
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <ul class="sidebar-menu">
-                        <li class="header">NAVIGATION MENU</li>
-                        <li>
-                            <a href="">
-                                <i class="fa fa-home"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li><a href="<?php echo URL; ?>landlord/buildings"><i class="fa fa-building-o"></i> <span>Buildings</span></a></li>
-                        <li><a href="<?php echo URL; ?>landlord/apartments"><i class="fa fa-building-o"></i> <span>Apartments</span></a></li>
-                        <li><a href="<?php echo URL; ?>landlord/tenants"><i class="fa fa-users"></i> <span>Tenants</span></a></li>
-                        <li><a href="<?php echo URL; ?>landlord/maintenanceRequests"><i class="fa fa-list"></i> <span>Maintenance Requests</span></a></li>
-                        <li><a href="<?php echo URL; ?>landlord/changedApartments"><i class="fa fa-list"></i> <span>Changed Apartments</span></a></li>
-                        <li><a href="<?php echo URL; ?>landlord/leaseContracts"><i class="fa fa-list"></i> <span>Lease Contracts</span></a></li>
-                        <li><a href="<?php echo URL; ?>landlord/renewedContracts"><i class="fa fa-list"></i> <span>Renewals</span></a></li>
-                        <!--<li><a href="<?php echo URL; ?>landlord/"><i class="fa fa-money"></i> <span>Payment</span></a></li>-->
-                        <li><a href="<?php echo URL; ?>landlord/terminatedContracts"><i class="fa fa-list"></i> <span>Terminated Contracts</span></a></li>
-                        <li><a href="<?php echo URL; ?>landlord/securityRefunds"><i class="fa fa-list"></i> <span>Security Refunds</span></a></li>
-                        <li><a href="<?php echo URL; ?>landlord/maintenanceCategories"><i class="fa fa-list"></i> <span>Maintenance Categories</span></a></li>
-                        <!--<li><a href=""><i class="fa fa-sign-out"></i> <span>Log out</span></a></li>-->
+                        <?php
+                        if ($_SESSION['role'] == 'admin') {
+                            ?>
+                            <li><a href=""><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/buildings"><i class="fa fa-building-o"></i> <span>Buildings</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/apartments"><i class="fa fa-building-o"></i> <span>Apartments</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/tenants"><i class="fa fa-users"></i> <span>Tenants</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/maintenanceRequests"><i class="fa fa-list"></i> <span>Maintenance Requests</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/changedApartments"><i class="fa fa-list"></i> <span>Changed Apartments</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/leaseContracts"><i class="fa fa-list"></i> <span>Lease Contracts</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/renewedContracts"><i class="fa fa-list"></i> <span>Renewals</span></a></li>
+                            <!--<li><a href="<?php echo URL; ?>landlord/"><i class="fa fa-money"></i> <span>Payment</span></a></li>-->
+                            <li><a href="<?php echo URL; ?>landlord/terminatedContracts"><i class="fa fa-list"></i> <span>Terminated Contracts</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/securityRefunds"><i class="fa fa-list"></i> <span>Security Refunds</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/maintenanceCategories"><i class="fa fa-list"></i> <span>Maintenance Categories</span></a></li>
+                        <?php } elseif ($_SESSION['role'] == 'tenant') {
+                            ?>
+                            <li><a href = "<?php echo URL; ?>tenant/requestmaintenance"><i class = "fa fa-plus-square"></i> <span>Request Maintenance</span></a></li>
+                            <li><a href = "<?php echo URL; ?>tenant"><i class = "fa fa-plus-square"></i> <span>Request Apartment Change</span></a></li>
+                            <li><a href = "<?php echo URL; ?>tenant"><i class = "fa fa-bell"></i> <span>Notifications</span></a></li>
+                            <li><a href = "<?php echo URL; ?>tenant"><i class = "fa fa-plus-square"></i> <span>Renew Contract</span></a></li>
+                            <li><a href = "<?php echo URL; ?>tenant"><i class = "fa fa-times-circle"></i> <span>Terminate Contract</span></a></li>
+                        <?php }
+                        ?>
                     </ul>
                 </section>
                 <!-- /.sidebar -->

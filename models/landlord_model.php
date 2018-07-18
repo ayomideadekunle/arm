@@ -10,15 +10,14 @@ class Landlord_Model extends Model {
         $DATABASE = $this->db;
     }
 
-// Get current loggedIn userid
-    function currentUserid() {
-        @session_start();
+    // getting details method
 
-        $save = $_SESSION['id'];
-        return $save;
+    function loggedInUser() {
+        @session_start();
+        $userid = $_SESSION['id'];
+        return $userid;
     }
 
-    // getting details method
     // get building info
     public function buildingInfo($id = '') {
         global $DATABASE;
@@ -52,7 +51,7 @@ class Landlord_Model extends Model {
     public function tenantProfile() {
         global $DATABASE;
 
-        $id = $_SESSION['id'];
+        $id = $this->loggedInUser();
         $query = $DATABASE->select("SELECT * FROM tenant WHERE id = " . $id);
         return $query;
     }
@@ -234,7 +233,7 @@ class Landlord_Model extends Model {
         $newpassword = array(
             'password' => md5($_POST['password'])
         );
-        $userid = $this->currentUserid();
+        $userid = $this->loggedInUser();
         $checkIfUserExists = $DATABASE->select("SELECT * FROM tenant "
                 . "WHERE id = " . $userid);
 
@@ -255,7 +254,7 @@ class Landlord_Model extends Model {
 
         // $response = true;
 
-        $userid = $this->currentUserid();
+        $userid = $this->loggedInUser();
         $checkIfPasswordExists = $DATABASE->select("SELECT password FROM tenant WHERE id = " . $userid);
         if ($checkIfPasswordExists[0]['password'] == md5($password)) {
 //           return response;

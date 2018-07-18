@@ -31,27 +31,24 @@ class Login_Model extends Model {
     }
 
     public function adminLogin() {
-        $sth = $this->db->prepare("SELECT id FROM admin WHERE "
-                . "username = :username AND password = :password");
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $val = $this->db->select("select * from admin ");
 
-        $sth->execute(array(
-            ':username' => $_POST['username'],
-            ':password' => md5($_POST['password'])
-        ));
+        foreach ($val as $key => $value) {
+            if ($username == $value['username'] && $password == $value['password']) {
+                $name = "1";
+                @session_start();
 
-        $data = $sth->fetch();
+                $_SESSION["admin_id"] = $value["id"];
+                $_SESSION["username"] = $value["username"];
+                $_SESSION["role"] = $value["role"];
 
-        $count = $sth->rowCount();
-
-        if ($count > 0) {
-            Session::init();
-            Session::set('APTRENTALMGT_LOGGED_IN', true);
-            Session::set('id', $data['id']);
-            Session::set('role', $data['role']);
-            header('Location: ' . URL . 'admin');
-        } else {
-            header('Location: ' . URL . "redirect/login");
+                echo $name;
+                return FALSE;
+            }
         }
+        echo "0";
     }
 
 }

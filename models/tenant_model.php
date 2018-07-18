@@ -8,8 +8,21 @@ class Tenant_Model extends Model {
         $DATABASE = $this->db;
     }
 
+    function loggedInUser() {
+        @session_start();
+        $userid = $_SESSION['id'];
+        return $userid;
+    }
+    
+    function getEnddate(){
+        $userid = $this->loggedInUser();
+        $query_lease = $this->db->select("select * from lease");
+        $enddate = $query_lease[0]['endDate'];
+        return $enddate;
+    }
+
     public function loggedInUserApartment() {
-        $loggedInUser_id = $_SESSION['id'];
+        $loggedInUser_id = $this->loggedInUser();
         $querytbl = $this->db->select("select * from lease where tenant_id =" . $loggedInUser_id);
         $apartment_id = $querytbl[0]['apartment_id'];
         return $apartment_id;
@@ -17,7 +30,7 @@ class Tenant_Model extends Model {
 
     // Create Method
     public function sendMaintenanceRequest() {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         $apartment_id = $this->loggedInUserApartment();
 
         $sent_date = date("Y:m:d");
@@ -30,10 +43,11 @@ class Tenant_Model extends Model {
             'sent_date' => $sent_date
         );
         $this->db->insert('maintenance', $maintenanceData);
+//        print_r($maintenanceData);
     }
 
     public function changeApartment() {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         $apartment_id = $this->loggedInUserApartment();
 
         $changeApartmentData = array(
@@ -45,8 +59,11 @@ class Tenant_Model extends Model {
     }
 
     public function renewContract() {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         $apartment_id = $this->loggedInUserApartment();
+        
+        $endDate = $this->getEnddate();
+        $add = $endDate + 1;
 
         $renewalData = array(
             'tenant_id' => $tenant_id,
@@ -58,7 +75,7 @@ class Tenant_Model extends Model {
     }
 
     public function termination() {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         $apartment_id = $this->loggedInUserApartment();
 
         $terminationData = array(
@@ -73,7 +90,7 @@ class Tenant_Model extends Model {
     // Update Method
 
     public function updateChangeApartment($id) {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         $apartment_id = $this->loggedInUserApartment();
 
         $changeApartmentData = array(
@@ -85,7 +102,7 @@ class Tenant_Model extends Model {
     }
 
     public function updateRenewContract($id) {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         $apartment_id = $this->loggedInUserApartment();
 
         $renewalData = array(
@@ -98,7 +115,7 @@ class Tenant_Model extends Model {
     }
 
     public function updateTermination($id) {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         $apartment_id = $this->loggedInUserApartment();
 
         $terminationData = array(
@@ -111,7 +128,7 @@ class Tenant_Model extends Model {
     }
 
     public function updateSendMaintenanceRequest($id) {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         $apartment_id = $this->loggedInUserApartment();
         $sent_date = date("Y:m:d");
 
@@ -128,44 +145,49 @@ class Tenant_Model extends Model {
     // Read Method
 
     public function maintenanceRequests() {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         return $this->db->select("select * from maintenance where tenant_id =" . $tenant_id);
     }
 
     public function changeOfApartmentRequests() {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         return $this->db->select("select * from apartmentChange where tenant_id =" . $tenant_id . "order by desc limit 1");
     }
 
     public function renewedContracts() {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         return $this->db->select("select * from renewal where tenant_id =" . $tenant_id . "order by desc limit 1");
     }
 
     public function terminatedContracts() {
-        $tenant_id = $_SESSION['id'];
+        $tenant_id = $this->loggedInUser();
         return $this->db->select("select * from termination where tenant_id =" . $tenant_id . "order by desc limit 1");
+    }
+
+    public function mntCats() {
+        global $DATABASE;
+        return $DATABASE->select("select * from maintenance_category");
     }
 
     // Read One Method
 
     public function findChangeAptById() {
-        $id = $_SESSION['id'];
+        $id = $this->loggedInUser();
         return $this->db->select("select * from apartmentChange where id =" . $id);
     }
 
     public function findRenewedContractById() {
-        $id = $_SESSION['id'];
+        $id = $this->loggedInUser();
         return $this->db->select("select * from renewal where id =" . $id);
     }
 
     public function findTerminatedContractById() {
-        $id = $_SESSION['id'];
+        $id = $this->loggedInUser();
         return $this->db->select("select * from termination where id =" . $id);
     }
 
     public function findMaintenanceRequestById() {
-        $id = $_SESSION['id'];
+        $id = $this->loggedInUser();
         return $this->db->select("select * from maintenance where id =" . $id);
     }
 

@@ -12,16 +12,12 @@ class Tenant extends Controller {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
 // display dashboard
-            $this->view->render('navigation/header');
-            $this->view->render('admin/apartment/index');
-            $this->view->render('navigation/footer');
         } else {
 // display login page
         }
     }
 
     //  To be deleted
-
     // Create Method Controller
 
     public function handleMaintenanceRequest() {
@@ -42,10 +38,14 @@ class Tenant extends Controller {
 
     // Create Form Pages
 
-    public function mntReqCreatePage() {
+    public function requestmaintenance() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
+            $this->view->categories = $this->model->mntCats();
 // render create page
+            $this->view->render('navigation/header');
+            $this->view->render('tenant/maintenance/create');
+            $this->view->render('navigation/footer');
         } else {
 // render login page
         }
