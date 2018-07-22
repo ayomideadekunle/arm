@@ -17,11 +17,11 @@
 
         <script>
             function logout() {
-                location = "http://localhost/apartment-rental-mgt/login/logout";
+                location = "http://arm/login/logout";
             }
 
             function showProfile() {
-                location = "http://localhost/apartment-rental-mgt/landlord/tenantProfile";
+                location = "http://arm/landlord/tenantProfile";
             }
         </script>
     </head>
@@ -107,10 +107,8 @@
                         <?php } elseif ($_SESSION['role'] == 'tenant') {
                             ?>
                             <li><a href = "<?php echo URL; ?>tenant/requestmaintenance"><i class = "fa fa-plus-square"></i> <span>Request Maintenance</span></a></li>
-                            <li><a href = "<?php echo URL; ?>tenant"><i class = "fa fa-plus-square"></i> <span>Request Apartment Change</span></a></li>
+                            <li><a href = "<?php echo URL; ?>tenant/request"><i class = "fa fa-plus-square"></i> <span>Request</span></a></li>
                             <li><a href = "<?php echo URL; ?>tenant"><i class = "fa fa-bell"></i> <span>Notifications</span></a></li>
-                            <li><a href = "<?php echo URL; ?>tenant"><i class = "fa fa-plus-square"></i> <span>Renew Contract</span></a></li>
-                            <li><a href = "<?php echo URL; ?>tenant"><i class = "fa fa-times-circle"></i> <span>Terminate Contract</span></a></li>
                         <?php }
                         ?>
                     </ul>

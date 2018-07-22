@@ -6,20 +6,16 @@ class Login extends Controller {
         parent::__construct();
     }
 
-    public function logInTenant() {
-        $this->model->tenantLogin();
+    public function loginUser() {
+        $this->model->userLogin();
         header("Location: " . URL);
-    }
-
-    public function logInAdmin() {
-        $this->model->adminLogin();
     }
 
     public function logout() {
         Session::init();
         @session_destroy();
 //        echo 'logged out';
-        header("Location: http://localhost/apartment-rental-mgt/");
+        header("Location: http://arm/");
     }
 
 }

@@ -2,7 +2,7 @@
 
 // Always provide a TRAILING SLASH (/) AFTER A PATH
 
-define('URL', 'http://localhost/apartment-rental-mgt/');
+define('URL', 'http://arm/');
 
 define('LIBS', 'libs/');
 

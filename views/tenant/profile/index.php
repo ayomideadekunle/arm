@@ -52,7 +52,7 @@ $profile_data = $this->tenant_info;
                 oldpassword: $(".prvpassword").val(),
                 password: $(".newpassword").val()
             }
-            $.post("http://localhost/apartment-rental-mgt/landlord/change_pwd", data, function (response) {
+            $.post("http://arm/landlord/change_pwd", data, function (response) {
                 console.log(response)
             });
             return false;

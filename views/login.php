@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="<?php echo URL; ?>public/dist/css/AdminLTE.min.css">
         <!-- iCheck -->
         <link rel="stylesheet" href="<?php echo URL; ?>public/plugins/iCheck/square/blue.css">
+        <script src="<?php echo URL; ?>public/jquery.js"></script>
+        <script src="<?php echo URL; ?>public/jquery-ui.min.js"></script>
     </head>
     <body class="hold-transition login-page">
         <div class="login-box">
@@ -21,9 +23,11 @@
 
             <div class="login-box-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="<?php echo URL; ?>login/logInTenant" method="post">
+                <div id="errorMessage" class="alert alert-danger hidden" role="alert">
+                </div>
+                <form>
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" name="email" id="username" placeholder="Username">
+                        <input type="email" class="form-control" name="email" id="username" placeholder="Username">
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
@@ -49,9 +53,35 @@
             </div><!-- /.login-box-body -->
         </div><!-- /.login-box -->
 
-        <script src="<?php echo URL; ?>public/jquery.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#login_button").click(function (e) {
+                    e.preventDefault();
+                    var username = $("#username").val();
+                    var password = $("#password").val();
+
+                    // alert(username);
+
+                    if ($.trim(username).length > 0 && $.trim(password).length > 0) {
+                        $.ajax({
+                            url: "http://arm/login/loginUser/",
+                            method: "POST",
+                            data: {email: username, password: password},
+                            cache: false,
+                            success: function (data) {
+                                window.location = "http://arm";
+                            },
+                            error: function () {}
+                        });
+                    } else {
+                        alert("Please enter your username and password");
+                    }
+                });
+            });
+        </script>
+
         <!-- Bootstrap 3.3.5 -->
         <script src="<?php echo URL; ?>public/bootstrap/js/bootstrap.min.js"></script>
-        <!-- <script src="<?php echo URL; ?>public/plugins/jQueryUI/jquery-ui.min.js"></script> -->
     </body>
 </html>

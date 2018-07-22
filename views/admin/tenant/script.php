@@ -4,7 +4,7 @@
         $(".checkIfExists").change(function (e) {
             e.preventDefault();
             var email = $(".checkIfExists").val();
-            $.get("http://localhost/apartment-rental-mgt/landlord/checkEmailExists/" + email, function (response) {
+            $.get("http://arm/landlord/checkEmailExists/" + email, function (response) {
                 $.each(JSON.parse(response), function (response, value) {
                     if (value.email === email) {
                         console.log("Already exists");
@@ -20,7 +20,7 @@
     });
 
     function edit_Tenant(id) {
-        $.get("http://localhost/apartment-rental-mgt/landlord/tenantEditPage/" + id, function (resp) {
+        $.get("http://arm/landlord/tenantEditPage/" + id, function (resp) {
             $("#loadEditPage").html(resp);
             $('#edit_tenant').modal('show');
 //            console.log("Worked");
@@ -41,10 +41,10 @@
     function delete_Tenant(id) {
         $("#delete_tenant").modal('show');
         $(".delete").click(function () {
-            $.get("http://localhost/apartment-rental-mgt/landlord/deletetenant/" + id, function (resp) {
+            $.get("http://arm/landlord/deletetenant/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_tenant").modal('hide');
-                location = "http://localhost/apartment-rental-mgt/landlord/tenants";
+                location = "http://arm/landlord/tenants";
             });
         });
         $(".cancel").click(function () {

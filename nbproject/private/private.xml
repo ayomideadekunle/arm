@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/opt/lampp/htdocs/apartment-rental-mgt/views/tenant/maintenance/create.php</file>
+            <file>file:/opt/lampp/htdocs/apartment-rental-mgt/views/tenant/renewal/create.php</file>
             <file>file:/opt/lampp/htdocs/apartment-rental-mgt/controllers/tenant.php</file>
-            <file>file:/opt/lampp/htdocs/apartment-rental-mgt/config.php</file>
+            <file>file:/opt/lampp/htdocs/apartment-rental-mgt/models/paystack_tut.php</file>
             <file>file:/opt/lampp/htdocs/apartment-rental-mgt/models/tenant_model.php</file>
-            <file>file:/opt/lampp/htdocs/apartment-rental-mgt/models/login_model.php</file>
+            <file>file:/opt/lampp/htdocs/apartment-rental-mgt/views/navigation/header.php</file>
         </group>
     </open-files>
 </project-private>

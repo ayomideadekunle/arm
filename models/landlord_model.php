@@ -160,6 +160,7 @@ class Landlord_Model extends Model {
 
         $leaseInfo = array(
             'tenant_id' => $_POST['tenant_id'],
+            'building_id' => $_POST['building_id'],
             'apartment_id' => $_POST['apartment_id'],
             'startDate' => $_POST['startDate'],
             'endDate' => $_POST['endDate'],
@@ -175,6 +176,7 @@ class Landlord_Model extends Model {
         $DATABASE->insert('lease', $leaseInfo);
         $DATABASE->select($query);
         $DATABASE->commitTransaction();
+//        print_r($leaseInfo);
     }
 
     public function addMaintenanceCat() {

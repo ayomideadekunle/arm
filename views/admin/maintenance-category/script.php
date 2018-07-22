@@ -1,6 +1,6 @@
 <script>
     function edit_MntCat(id) {
-        $.get("http://localhost/apartment-rental-mgt/landlord/maintenanceCatEditPage/" + id, function (resp) {
+        $.get("http://arm/landlord/maintenanceCatEditPage/" + id, function (resp) {
             $("#loadEditPage").html(resp);
             $('#edit_mntcat').modal('show');
 //            console.log("Worked");
@@ -10,10 +10,10 @@
     function delete_MntCat(id) {
         $("#delete_mntcat").modal('show');
         $(".delete").click(function () {
-            $.get("http://localhost/apartment-rental-mgt/landlord/deleteMntCat/" + id, function (resp) {
+            $.get("http://arm/landlord/deleteMntCat/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_mntcat").modal('hide');
-                location = "http://localhost/apartment-rental-mgt/landlord/maintenanceCategories";
+                location = "http://arm/landlord/maintenanceCategories";
 //                window.reload;
             });
         });
