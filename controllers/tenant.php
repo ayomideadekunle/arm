@@ -60,7 +60,11 @@ class Tenant extends Controller {
         }
     }
 
-    // Edit Form Pages
+    public function checkApartment($apt_id){
+        $this->model->checkApartment($apt_id);
+    }
+
+    // Test Page
 
     public function test() {
         Session::init();
@@ -73,16 +77,6 @@ class Tenant extends Controller {
         } else {
 // render login page
         }
-    }
-
-    // Update Method Controller
-
-    public function editMaintenanceRequest($id) {
-        $this->model->updateSendMaintenanceRequest($id);
-    }
-
-    public function editChngAptRequest($id) {
-        $this->model->updateChangeApartment($id);
     }
 
 }

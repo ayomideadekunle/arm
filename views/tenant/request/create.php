@@ -33,7 +33,7 @@
                             $apartments = $this->apartments;
                             foreach ($apartments as $apartment) {
                                 ?>
-                                <option value="<?php echo $apartment['id']; ?>">
+                                <option value="<?php echo $apartment['id']; ?>" id="apt_id">
                                     <?php echo $apartment['apartmentNumber'] . " " . $apartment['apartmentType']; ?>
                                 </option>
                             <?php } ?>
@@ -130,5 +130,20 @@
 
             return false;
         });
+
+         $(".newApartment").change(function (e) {
+            e.preventDefault();
+            var apartmentid = $(this).val();
+            // console.log(userid);
+            $.get("http://arm/tenant/checkApartment/" + apartmentid, function (result) {
+                // console.log(result);
+                var currentApartment = $("#apt_id").val();
+                $.each(JSON.parse(result), function (result, value) {
+                    if (currentApartment === value.apartment_id) {
+                        alert("Already existed");
+                    }
+                })
+            })
+        })
     });
 </script>

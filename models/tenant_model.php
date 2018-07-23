@@ -53,6 +53,13 @@ class Tenant_Model extends Model
         return $apartment_id;
     }
 
+    public function checkApartment($apartment_id){
+        global $DATABASE;
+        $loggedInUser_id = $this->loggedInUser();
+        $result = $DATABASE->select("select * from lease where apartment_id = " . $apartment_id ." and tenant_id = " .$loggedInUser_id);
+        echo json_encode($result);
+    }
+
     // Create Method
     public function sendMaintenanceRequest()
     {
