@@ -186,11 +186,14 @@ class Landlord extends Controller {
 
     // List Pages
 
-    public function maintenanceRequests() {
+    public function maintenancerequests() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->mntncReqs = $this->model->maintenanceReqs();
 // render list page
+            $this->view->render("navigation/header");
+            $this->view->render("admin/requests/index");
+            $this->view->render("navigation/footer");
         } else {
 // render login page
         }

@@ -100,7 +100,7 @@
                             <li><a href="<?php echo URL; ?>landlord/buildings"><i class="fa fa-building-o"></i> <span>Buildings</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/apartments"><i class="fa fa-building-o"></i> <span>Apartments</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/tenants"><i class="fa fa-users"></i> <span>Tenants</span></a></li>
-                            <li><a href="<?php echo URL; ?>landlord/maintenanceRequests"><i class="fa fa-list"></i> <span>Maintenance Requests</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/maintenancerequests"><i class="fa fa-list"></i> <span>Maintenance Requests</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/changedApartments"><i class="fa fa-list"></i> <span>Changed Apartments</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/leaseContracts"><i class="fa fa-list"></i> <span>Lease Contracts</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/renewedContracts"><i class="fa fa-list"></i> <span>Renewals</span></a></li>

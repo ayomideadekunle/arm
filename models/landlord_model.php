@@ -38,6 +38,15 @@ class Landlord_Model extends Model {
         return $getinfo_query;
     }
 
+    public function maintenanceCatInfo($id = '') {
+        global $DATABASE;
+        $param = array(
+            ":catid" => $id
+        );
+        $getinfo_query = $DATABASE->select("SELECT * FROM maintenance_category WHERE id = :catid", $param);
+        return $getinfo_query;
+    }
+
     // get apartment info
     public function apartmentInfo($id = '') {
         global $DATABASE;
