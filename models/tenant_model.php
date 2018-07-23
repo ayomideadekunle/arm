@@ -21,6 +21,17 @@ class Tenant_Model extends Model {
         return $enddate;
     }
 
+    public function loadApartments(){
+        $userid = $this->loggedInUser();
+
+        global $DATABASE;
+        $query = $DATABASE->select("select * from lease where tenant_id =" . $userid);
+        $building = $query[0]['building_id'];
+
+        $secquery = $DATABASE->select("select * from apartment where building_id = " .$building);
+        return $secquery;
+    }
+
     public function loggedInUserApartment() {
         $loggedInUser_id = $this->loggedInUser();
         $querytbl = $this->db->select("select * from lease where tenant_id =" . $loggedInUser_id);

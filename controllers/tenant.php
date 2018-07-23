@@ -46,6 +46,7 @@ class Tenant extends Controller {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
             $this->view->requestcats = $this->model->requestCategories();
+            $this->view->apartments = $this->model->loadApartments();
 // render create page
             $this->view->render('navigation/header');
             $this->view->render('tenant/request/create');
