@@ -32,6 +32,13 @@ class Tenant_Model extends Model {
         return $secquery;
     }
 
+    // public function getLeaseId(){
+    //     $userid = $this->loggedInUser();
+    //     $getLeaseId = $this->db->select("select * from lease where tenant_id = " .$userid);
+    //     $result = $getLeaseId[0]["id"];
+    //     return $result;
+    // }
+
     public function loggedInUserApartment() {
         $loggedInUser_id = $this->loggedInUser();
         $querytbl = $this->db->select("select * from lease where tenant_id =" . $loggedInUser_id);
@@ -65,9 +72,17 @@ class Tenant_Model extends Model {
             'tenant_id' => $tenant_id,
             'leavingAprtmentid' => $apartment_id,
             'newApartment' => $_POST['newApartment'],
-            'changeDate' => $_POST['changeDate']
+            'changeDate' => $_POST['changeDate'],
+            'status' => 0
         );
+
+        // $update_lease_tbl = "update lease set apartment_id = " .$_POST['newApartment']. "where tenant_id = '$tenant_id'";
+        // echo $update_lease_tbl;
+
+        // $this->db->startTransaction();
         $this->db->insert('apartmentChange', $changeApartmentData);
+        // $this->db->select($update_lease_tbl);
+        // $this->db->commitTransaction();
     }
 
     public function renewContract() {
@@ -91,6 +106,20 @@ class Tenant_Model extends Model {
         $this->db->insert('renewal', $renewalData);
 //        echo $renewalDate;
 //        print_r($renewalData);
+    }
+
+    public function handleTermination(){
+        global $DATABASE;
+        $tenant_id = $this->loggedInUser();
+        
+        $terminationData = array(
+            'tenant_id' => $tenant_id,
+            'leavingDate' => $_POST['leavingDate'],
+            'leavingReason' => $_POST['leavingReason'],
+            'status' => 0
+        );
+
+        $DATABASE->insert("termination", $terminationData);
     }
 
     // Read Method

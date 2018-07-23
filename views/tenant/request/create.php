@@ -11,21 +11,21 @@
 
                     <div class="form-group">
                         <label>Category</label>
-                        <select class="form-control request_category" name="category_id" onchange="getText(this);">
+                        <select class="form-control request_category" name="category_id">
                             <option selected="">Select request type</option>
                             <?php
                             $count = 1;
                             $categories = $this->requestcats;
                             foreach ($categories as $category) {
                                 ?>
-                                <option value="<?php echo $category['id']; ?>" id="<?php echo "add" . $count++; ?>">
+                                <option value="<?php echo $category['type']; ?>" id="<?php echo "add" . $count++; ?>">
                                     <?php echo $category['type']; ?>
                                 </option>
                             <?php } ?>
                         </select>
                     </div>
 
-                    <div class="form-group aptChange">
+                    <div class="form-group aptChange" style="display: none">
                         <label for="newApt">New Apartment</label>
                         <select class="form-control newApartment" name="newApartment">
                             <option selected="">Select new apartment</option>
@@ -40,17 +40,17 @@
                         </select>
                     </div>
 
-                    <div class="form-group aptChange">
+                    <div class="form-group aptChange" style="display: none">
                         <label for="date">Move in date</label>
                         <input class="form-control changeDate" name="changeDate">
                     </div>
 
-                    <div class="form-group termination">
+                    <div class="form-group termination" style="display: none">
                         <label for="date">Leaving date</label>
                         <input class="form-control leavingDate" name="leavingDate">
                     </div>
 
-                    <div class="form-group termination">
+                    <div class="form-group termination" style="display: none">
                         <label for="date">Leaving Reason</label>
                         <input class="form-control leavingReason" name="leavingReason">
                     </div>
@@ -71,50 +71,64 @@
             e.preventDefault();
             var text = this.options[this.selectedIndex].text;
             if (text === "Change Apartment") {
-                $(".aptChange").removeClass("aptChange");
-//                $(".termination").hide("slow", function () {
-//                    alert("Animation Done.");
-//                });
+                $(".aptChange").show();
+                $(".termination").hide();
             } else if (text === "Terminate Lease") {
-                // console.log("okay");
-//                $(".aptChange").hide("slow", function () {
-//                    alert("Animation Done.");
-//                });
-                $(".termination").removeClass("termination");
+                $(".termination").show();
+                $(".aptChange").hide();
+            } else {
+                $(".termination").hide();
+                $(".aptChange").hide();
             }
             return text;
         });
 
         $(".process").submit(function () {
-            // var request_cat = $(".request_category").val()
+            var request_cat = $(".request_category").val();
+            if(request_cat === "Change Apartment"){
+                
+                var url = "http://arm/tenant/handleChngAptRequest";
+                var newApt = $(".newApartment").val();
+                var move_in_date = $(".changeDate").val();
 
-            var url = "http://arm/tenant/handleChngAptRequest";
+                $.ajax({
+                type: 'POST',
+                url: url,
+                data: {newApartment: newApt, changeDate: move_in_date },
+                success: function (data) {
+                   alert("Successful");
+                   location = "http://arm";
+                    // $("#success").removeClass("hidden");
+                    // $('#success').append("<h4>Successfull!!!</h4>").delay(3000).fadeOut(3000);
+                },
+                error: function () {
+                }
+            });
+            } else if(request_cat === "Terminate Lease"){
+                
+                var url = "http://arm/tenant/handleContractTermination"
+                var date = $(".leavingDate").val();
+                var reason = $(".leavingReason").val();
 
-            var newApt = $(".newApartment").val();
-            var move_in_date = $(".changeDate").val();
+                $.ajax({
+                type: 'POST',
+                url: url,
+                data: {leavingDate: date, leavingReason: reason },
+                success: function (data) {
+                   alert("Successful");
+                   location = "http://arm";                   
+                    // $("#success").removeClass("hidden");
+                    // $('#success').append("<h4>Successfull!!!</h4>").delay(3000).fadeOut(3000);
+                },
+                error: function () {
+                }
+            });
+            } else {
+                alert("Please select request type");
+            }
+            // console.log(request_cat);
 
-            // $.ajax({
-            //     type: 'POST',
-            //     url: url,
-            //     data: {newApartment: newApt, changeDate: move_in_date },
-            //     success: function (data) {
-            //        alert("Successful");
-            //         // $("#success").removeClass("hidden");
-            //         // $('#success').append("<h4>Successfull!!!</h4>").delay(3000).fadeOut(3000);
-            //     },
-            //     error: function () {
-            //     }
-            // });
             return false;
         });
     });
 </script>
-
-<style>
-    .aptChange {
-        display: none;
-    }
-    .termination {
-        display: none;
-    }
-</style>

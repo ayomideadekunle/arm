@@ -27,6 +27,10 @@ class Tenant extends Controller {
         $this->model->changeApartment();
     }
 
+    public function handleContractTermination(){
+        $this->model->handleTermination();
+    }
+
     // Create Form Pages
 
     public function requestmaintenance() {
