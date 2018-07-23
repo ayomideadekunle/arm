@@ -528,10 +528,7 @@ class Landlord_Model extends Model
         global $DATABASE;
 
         $softDeletequery = "UPDATE building SET isDeleted = 1 WHERE id = '$id'";
-
-//        $DATABASE->startTransaction();
         $DATABASE->select($softDeletequery);
-//        $DATABASE->commitTransaction();
     }
 
     public function delLeaseContractById($id)

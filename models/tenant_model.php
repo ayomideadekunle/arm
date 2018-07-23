@@ -131,7 +131,7 @@ class Tenant_Model extends Model
             'tenant_id' => $tenant_id,
             'leavingDate' => $_POST['leavingDate'],
             'leavingReason' => $_POST['leavingReason'],
-            'status' => 1,
+            // 'status' => 1,
         );
 
         $this->db->startTransaction();        

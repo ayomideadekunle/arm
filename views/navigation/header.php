@@ -103,7 +103,7 @@
                             <li><a href="<?php echo URL; ?>landlord/tenants"><i class="fa fa-users"></i> <span>Tenants</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/maintenancerequests"><i class="fa fa-list"></i> <span>Maintenance Requests</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/apartment_change_requests"><i class="fa fa-list"></i> <span>Change Apartment Request</span></a></li>
-                            <li><a href="<?php echo URL; ?>landlord/renewedContracts"><i class="fa fa-list"></i> <span>Renewals</span></a></li>
+                            <!-- <li><a href="<?php echo URL; ?>landlord/renewedContracts"><i class="fa fa-list"></i> <span>Renewals</span></a></li> -->
                             <!--<li><a href="<?php echo URL; ?>landlord/"><i class="fa fa-money"></i> <span>Payment</span></a></li>-->
                             <li><a href="<?php echo URL; ?>landlord/terminatedContracts"><i class="fa fa-list"></i> <span>Terminated Contracts</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/securityRefunds"><i class="fa fa-list"></i> <span>Security Refunds</span></a></li>

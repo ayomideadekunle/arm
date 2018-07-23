@@ -227,6 +227,9 @@ class Landlord extends Controller {
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->terminatedContracts = $this->model->terminatedCntracts();
 // render list page
+            $this->view->render("navigation/header");
+            $this->view->render("admin/terminated/index");
+            $this->view->render("navigation/footer");
         } else {
 // render login page
         }
@@ -364,5 +367,9 @@ class Landlord extends Controller {
 
     public function deleteRequest($id){
         $this->model->delMaintenanceRequestById($id);
+    }
+
+    public function deleteContract($id){
+        $this->model->delTerminatedContractById($id);
     }
 }

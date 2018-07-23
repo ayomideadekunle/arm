@@ -132,3 +132,9 @@ $l_mod = new Landlord_Model();
             });
     }
 </script>
+
+<script>
+    $(function () {
+        $("#data_table").DataTable();
+    });
+</script>
