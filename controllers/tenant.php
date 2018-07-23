@@ -62,11 +62,14 @@ class Tenant extends Controller {
 
     // Edit Form Pages
 
-    public function chngAptReqEditPage() {
+    public function test() {
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            $this->view->chngAptData = $this->model->findChangeAptById();
+            // $this->view->chngAptData = $this->model->findChangeAptById();
 // render edit page
+            $this->view->render('navigation/header');
+            $this->view->render('tenant/notification/index');
+            $this->view->render('navigation/footer');
         } else {
 // render login page
         }

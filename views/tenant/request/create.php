@@ -42,17 +42,17 @@
 
                     <div class="form-group aptChange" style="display: none">
                         <label for="date">Move in date</label>
-                        <input class="form-control changeDate" name="changeDate">
+                        <input class="form-control changeDate" name="changeDate" type="date">
                     </div>
 
                     <div class="form-group termination" style="display: none">
                         <label for="date">Leaving date</label>
-                        <input class="form-control leavingDate" name="leavingDate">
+                        <input class="form-control leavingDate" name="leavingDate" type="date">
                     </div>
 
                     <div class="form-group termination" style="display: none">
                         <label for="date">Leaving Reason</label>
-                        <input class="form-control leavingReason" name="leavingReason">
+                        <textarea class="form-control leavingReason" name="leavingReason" rows="2"></textarea>
                     </div>
 
                 </div><!-- /.box-body -->

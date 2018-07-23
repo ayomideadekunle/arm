@@ -2,9 +2,11 @@
 
 // require './PHPMailer/PHPMailerAutoload.php';
 
-class Landlord_Model extends Model {
+class Landlord_Model extends Model
+{
 
-    function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         global $DATABASE;
         $DATABASE = $this->db;
@@ -12,52 +14,58 @@ class Landlord_Model extends Model {
 
     // getting details method
 
-    function loggedInUser() {
+    public function loggedInUser()
+    {
         @session_start();
         $userid = $_SESSION['id'];
         return $userid;
     }
 
     // get building info
-    public function buildingInfo($id = '') {
+    public function buildingInfo($id = '')
+    {
         global $DATABASE;
         $param = array(
-            ":buildingid" => $id
+            ":buildingid" => $id,
         );
         $getinfo_query = $DATABASE->select("SELECT * FROM building WHERE id = :buildingid", $param);
         return $getinfo_query;
     }
 
     // get tenant info
-    public function tenantInfo($id = '') {
+    public function tenantInfo($id = '')
+    {
         global $DATABASE;
         $param = array(
-            ":tenantid" => $id
+            ":tenantid" => $id,
         );
         $getinfo_query = $DATABASE->select("SELECT * FROM users WHERE id = :tenantid", $param);
         return $getinfo_query;
     }
-
-    public function maintenanceCatInfo($id = '') {
+    // get maintenance category info
+    public function maintenanceCatInfo($id = '')
+    {
         global $DATABASE;
         $param = array(
-            ":catid" => $id
+            ":catid" => $id,
         );
         $getinfo_query = $DATABASE->select("SELECT * FROM maintenance_category WHERE id = :catid", $param);
         return $getinfo_query;
     }
 
     // get apartment info
-    public function apartmentInfo($id = '') {
+    public function apartmentInfo($id = '')
+    {
         global $DATABASE;
         $param = array(
-            ":apartmentid" => $id
+            ":apartmentid" => $id,
         );
         $getinfo_query = $DATABASE->select("SELECT * FROM apartment WHERE id = :apartmentid", $param);
         return $getinfo_query;
     }
 
-    public function tenantProfile() {
+    public function tenantProfile()
+    {
         global $DATABASE;
 
         $id = $this->loggedInUser();
@@ -65,9 +73,36 @@ class Landlord_Model extends Model {
         return $query;
     }
 
+    public function grantRequest($id)
+    {
+        global $DATABASE;
+        // $chngAptReqs = $this->fndchngAptById($id);
+        // $tenantId = $chngAptReqs[0]['tenant_id'];
+        // $apartmentId = $chngAptReqs[0]['newApartment'];
+        // echo $getTenantId;
+
+        $update_lease_tbl = "update lease set apartment_id = " . $apartmentId . "where tenant_id = '$tenantId'";
+        $grant_query = "update apartmentChange set status = 1 where id = '$id'";
+
+        // $this->db->startTransaction();
+        $run_query = $DATABASE->select($grant_query);
+        // $this->db->select($update_lease_tbl);
+        // $this->db->commitTransaction();
+        // return $run_query;
+    }
+
+    public function rejectRequest($id)
+    {
+        global $DATABASE;
+        $reject_query = "update apartmentChange set status = 2 where id = '$id'";
+        $run_query = $DATABASE->select($reject_query);
+        // return $run_query;
+    }
+
     // fetch
 
-    public function fetchApartments($id) {
+    public function fetchApartments($id)
+    {
         global $DATABASE;
         $response = $DATABASE->select("SELECT * FROM apartment WHERE building_id = '$id'");
         // $result = array();
@@ -81,14 +116,16 @@ class Landlord_Model extends Model {
 
     // check if email exists
 
-    public function email_exists($email) {
+    public function email_exists($email)
+    {
         global $DATABASE;
 
         $result = $DATABASE->select("SELECT * FROM `users` WHERE email = '$email'");
         echo json_encode($result);
     }
 
-    public function tenant_exists($tenant_id) {
+    public function tenant_exists($tenant_id)
+    {
         global $DATABASE;
         $result = $DATABASE->select("select * from lease where tenant_id =" . $tenant_id);
         echo json_encode($result);
@@ -96,7 +133,8 @@ class Landlord_Model extends Model {
 
 // Create Method
 
-    public function addBuilding() {
+    public function addBuilding()
+    {
         global $DATABASE;
         $buildingData = array(
             'buildingName' => $_POST['buildingName'],
@@ -106,7 +144,8 @@ class Landlord_Model extends Model {
         $DATABASE->insert('building', $buildingData);
     }
 
-    public function mail_sending_template() {
+    public function mail_sending_template()
+    {
         $sender_address = 'mwaliyayomide@gmail.com';
         $sender_name = "Raji Waliyu Adekunle";
         $recipient = "holhusheun@gmail.com";
@@ -127,7 +166,8 @@ class Landlord_Model extends Model {
         }
     }
 
-    public function addAdmin() {
+    public function addAdmin()
+    {
         global $DATABASE;
         $adminData = array(
             'username' => $_POST['username'],
@@ -137,7 +177,8 @@ class Landlord_Model extends Model {
         $DATABASE->insert('admin', $adminData);
     }
 
-    public function addTenant() {
+    public function addTenant()
+    {
         global $DATABASE;
         $tenantData = array(
             'firstname' => $_POST['firstname'],
@@ -146,12 +187,13 @@ class Landlord_Model extends Model {
             'phone' => $_POST['phone'],
             'currentAddress' => $_POST['currentAddress'],
             'cityStateZip' => $_POST['cityStateZip'],
-            'password' => md5($_POST['password'])
+            'password' => md5($_POST['password']),
         );
         $DATABASE->insert("tenant", $tenantData);
     }
 
-    public function addApartment() {
+    public function addApartment()
+    {
         global $DATABASE;
         $apartmentData = array(
             'building_id' => $_POST['building_id'],
@@ -159,12 +201,13 @@ class Landlord_Model extends Model {
             'apartmentNumber' => $_POST['apartmentNumber'],
             'apartmentType' => $_POST['apartmentType'],
             'rentalFee' => $_POST['rentalFee'],
-            'status' => 0
+            'status' => 0,
         );
         $DATABASE->insert('apartment', $apartmentData);
     }
 
-    public function leaseContract() {
+    public function leaseContract()
+    {
         global $DATABASE;
 
         $leaseInfo = array(
@@ -176,7 +219,7 @@ class Landlord_Model extends Model {
             'balance' => $_POST['balance'],
             'securityDeposit' => $_POST['securityDeposit'],
             'period' => $_POST['period'],
-            'rentalDate' => $_POST['rentalDate']
+            'rentalDate' => $_POST['rentalDate'],
         );
 
         $query = "UPDATE apartment SET status = 1 WHERE id = " . $_POST['apartment_id'];
@@ -188,26 +231,29 @@ class Landlord_Model extends Model {
 //        print_r($leaseInfo);
     }
 
-    public function addMaintenanceCat() {
+    public function addMaintenanceCat()
+    {
         global $DATABASE;
         $catData = array(
-            'categoryName' => $_POST['categoryName']
+            'categoryName' => $_POST['categoryName'],
         );
         $DATABASE->insert('maintenance_category', $catData);
     }
 
-    public function securityRefund() {
+    public function securityRefund()
+    {
         global $DATABASE;
         $secRfdData = array(
             'refundAmount' => $_POST['refundAmount'],
             'refundReason' => $_POST['refundReason'],
-            'date' => $_POST['date']
+            'date' => $_POST['date'],
         );
         $DATABASE->insert('securityRefund', $secRfdData);
     }
 
 // Update Method
-    public function updateApartment($apartmentid = '') {
+    public function updateApartment($apartmentid = '')
+    {
         global $DATABASE;
 
         $apartmentData = array(
@@ -216,12 +262,13 @@ class Landlord_Model extends Model {
             'apartmentNumber' => $_POST['apartmentNumber'],
             'apartmentType' => $_POST['apartmentType'],
             'rentalFee' => $_POST['rentalFee'],
-            'status' => $_POST['status']
+            'status' => $_POST['status'],
         );
         $DATABASE->update('apartment', $apartmentData, 'id=' . $apartmentid);
     }
 
-    public function updateTenant($tenant_id = '') {
+    public function updateTenant($tenant_id = '')
+    {
         global $DATABASE;
         $tenantData = array(
             'firstname' => $_POST['firstname'],
@@ -234,7 +281,8 @@ class Landlord_Model extends Model {
         $DATABASE->update("users", $tenantData, 'id=' . $tenant_id);
     }
 
-    public function chngPassword() {
+    public function chngPassword()
+    {
         global $DATABASE;
 
         $response = false;
@@ -242,11 +290,11 @@ class Landlord_Model extends Model {
         $oldpassword = md5($_POST['oldpassword']);
 
         $newpassword = array(
-            'password' => md5($_POST['password'])
+            'password' => md5($_POST['password']),
         );
         $userid = $this->loggedInUser();
         $checkIfUserExists = $DATABASE->select("SELECT * FROM users "
-                . "WHERE id = " . $userid);
+            . "WHERE id = " . $userid);
 
         if ($checkIfUserExists[0]['password'] == $oldpassword) {
 //            echo 'Present';
@@ -260,7 +308,8 @@ class Landlord_Model extends Model {
         // echo json_encode($checkIfUserExists);
     }
 
-    public function checkPassword($password) {
+    public function checkPassword($password)
+    {
         global $DATABASE;
 
         // $response = true;
@@ -274,7 +323,8 @@ class Landlord_Model extends Model {
         // return false;
     }
 
-    public function updateBuilding($building_id = '') {
+    public function updateBuilding($building_id = '')
+    {
         global $DATABASE;
 
         $buildingData = array(
@@ -285,27 +335,30 @@ class Landlord_Model extends Model {
         $DATABASE->update('building', $buildingData, 'id=' . $building_id);
     }
 
-    public function updateMaintCat($cat_id = '') {
+    public function updateMaintCat($cat_id = '')
+    {
         global $DATABASE;
 
         $catData = array(
-            'categoryName' => $_POST['categoryName']
+            'categoryName' => $_POST['categoryName'],
         );
         $DATABASE->update('maintenance_category', $catData, 'id=' . $cat_id);
     }
 
-    public function updateSecRfnd($secRfndId = '') {
+    public function updateSecRfnd($secRfndId = '')
+    {
         global $DATABASE;
 
         $secRfdData = array(
             'refundAmount' => $_POST['refundAmount'],
             'refundReason' => $_POST['refundReason'],
-            'date' => $_POST['date']
+            'date' => $_POST['date'],
         );
         $DATABASE->update('securityRefund', $secRfdData, 'id=' . $secRfndId);
     }
 
-    public function updateLeaseContract($contract_id = '') {
+    public function updateLeaseContract($contract_id = '')
+    {
         global $DATABASE;
 
         $leaseInfo = array(
@@ -316,7 +369,7 @@ class Landlord_Model extends Model {
             'balance' => $_POST['balance'],
             'securityDeposit' => $_POST['securityDeposit'],
             'period' => $_POST['period'],
-            'rentalDate' => $_POST['rentalDate']
+            'rentalDate' => $_POST['rentalDate'],
         );
         $query = "UPDATE apartment SET status = 1 WHERE id = " . $_POST['apartment_id'];
 
@@ -328,121 +381,150 @@ class Landlord_Model extends Model {
 
 // Read Method
 
-    public function apartments() {
+    public function apartments()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from apartment");
     }
 
-    public function maintenanceReqs() {
+    public function maintenanceReqs()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from maintenance");
     }
 
-    public function changeOfApartmentReqs() {
+    public function changeOfApartmentReqs()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from apartmentChange");
     }
 
-    public function rnwdContracts() {
+    public function rnwdContracts()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from renewal");
     }
 
-    public function buildings() {
+    public function buildings()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from building where isDeleted = 0");
     }
 
-    public function tenants() {
+    public function tenants()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from users");
     }
 
-    public function leaseContracts() {
+    public function leaseContracts()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from lease");
     }
 
-    public function terminatedCntracts() {
+    public function terminatedCntracts()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from termination");
     }
 
-    public function securityRefunds() {
+    public function securityRefunds()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from securityRefund");
     }
 
-    public function maintenanceCats() {
+    public function maintenanceCats()
+    {
         global $DATABASE;
         return $DATABASE->select("select * from maintenance_category");
     }
 
 // Read One Method
 
-    public function fndApartmentById($id) {
+    public function fndApartmentById($id)
+    {
         global $DATABASE;
         return $DATABASE->select("select * from apartment where id =" . $id);
     }
 
-    public function fndBuildingById($id) {
+    public function fndchngAptById($id)
+    {
+        global $DATABASE;
+        return $DATABASE->select("select * from apartmentChange where id =" . $id);
+    }
+
+    public function fndBuildingById($id)
+    {
         global $DATABASE;
         return $DATABASE->select("select * from building where id =" . $id);
     }
 
-    public function fndTenantById($id) {
+    public function fndTenantById($id)
+    {
         global $DATABASE;
         return $DATABASE->select("select * from users where id =" . $id);
     }
 
-    public function fndLeaseContractById($id) {
+    public function fndLeaseContractById($id)
+    {
         global $DATABASE;
         return $DATABASE->select("select * from lease where id =" . $id);
     }
 
-    public function fndSecurityRefundById($id) {
+    public function fndSecurityRefundById($id)
+    {
         global $DATABASE;
         return $DATABASE->select("select * from securityRefund where id =" . $id);
     }
 
-    public function fndMaintenanceCatById($id) {
+    public function fndMaintenanceCatById($id)
+    {
         global $DATABASE;
         return $DATABASE->select("select * from maintenance_category where id =" . $id);
     }
 
 // Delete Method
 
-    public function delMaintenanceRequestById($id) {
+    public function delMaintenanceRequestById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("maintenance", "id =" . $id);
     }
 
-    public function delTenantById($id) {
+    public function delTenantById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("users", "id =" . $id);
     }
 
-    public function delRenewedContractById($id) {
+    public function delRenewedContractById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("renewal", "id =" . $id);
     }
 
-    public function delTerminatedContractById($id) {
+    public function delTerminatedContractById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("termination", "id =" . $id);
     }
 
-    public function delChangeOfApartmentRequestById($id) {
+    public function delChangeOfApartmentRequestById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("apartmentChange", "id =" . $id);
     }
 
-    public function delApartmentById($id) {
+    public function delApartmentById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("apartment", "id =" . $id);
     }
 
-    public function softDeleteBuilding($id) {
+    public function softDeleteBuilding($id)
+    {
         global $DATABASE;
 
         $softDeletequery = "UPDATE building SET isDeleted = 1 WHERE id = '$id'";
@@ -452,17 +534,20 @@ class Landlord_Model extends Model {
 //        $DATABASE->commitTransaction();
     }
 
-    public function delLeaseContractById($id) {
+    public function delLeaseContractById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("lease", "id =" . $id);
     }
 
-    public function delSecurityRefundById($id) {
+    public function delSecurityRefundById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("securityRefund", "id =" . $id);
     }
 
-    public function delMaintenanceCatById($id) {
+    public function delMaintenanceCatById($id)
+    {
         global $DATABASE;
         $DATABASE->delete("maintenance_category", "id =" . $id);
     }

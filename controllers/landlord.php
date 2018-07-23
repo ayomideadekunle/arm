@@ -199,11 +199,14 @@ class Landlord extends Controller {
         }
     }
 
-    public function changedApartments() {
+    public function apartment_change_requests() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
             $this->view->aprtChngReqs = $this->model->changeOfApartmentReqs();
 // render list page
+            $this->view->render("navigation/header");
+            $this->view->render("admin/apartment-change/index");
+            $this->view->render("navigation/footer");
         } else {
 // render login page
         }
@@ -322,6 +325,15 @@ class Landlord extends Controller {
         } else {
 // render login page
         }
+    }
+
+    public function grant($id){
+        $this->model->grantRequest($id);
+        // echo "Inside";
+    }
+
+    public function reject($id){
+        $this->model->rejectRequest($id);
     }
 
     // Delete Controller
