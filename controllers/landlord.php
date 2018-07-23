@@ -349,4 +349,8 @@ class Landlord extends Controller {
     public function deleteBuilding($id) {
         $this->model->softDeleteBuilding($id);
     }
+
+    public function deleteRequest($id){
+        $this->model->delMaintenanceRequestById($id);
+    }
 }

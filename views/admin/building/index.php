@@ -114,7 +114,7 @@
                 <h4 class="modal-title">Delete Building</h4>
             </div>
             <div class="modal-body">
-                <p><strong>Make sure you update lease info before deleting</strong></p>
+                <!-- <p><strong>Make sure you update lease info before deleting</strong></p> -->
                 <button class="btn btn-primary delete">Yes</button>
                 <button class="btn btn cancel">No</button>
             </div>

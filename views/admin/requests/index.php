@@ -55,6 +55,9 @@ $l_mod = new Landlord_Model();
                                     </td>
                                     <?php } ?>
                                     <td><?php echo $maintenance_request["request"];?></td>
+                                    <td>
+                                    <button onclick="delete_Request('<?php echo $maintenance_request['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>                                    
+                                    </td>
                                 </tr>
                                 <?php $count++; ?>
                             <?php }
@@ -66,3 +69,38 @@ $l_mod = new Landlord_Model();
         </div>
     </div>
 </section>
+
+<div id="delete_request" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Request</h4>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-primary delete">Yes</button>
+                <button class="btn btn cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function delete_Request(id) {
+        $("#delete_request").modal('show');
+        $(".delete").click(function () {
+            $.get("http://arm/landlord/deleteRequest/" + id, function (resp) {
+                alert("Deleted");
+                $("#delete_request").modal('hide');
+                location = "http://arm/landlord/maintenancerequests";
+//                window.reload;
+            });
+        });
+        $(".cancel").click(function () {
+            $("#delete_request").modal("hide");
+        })
+
+    }
+</script>
