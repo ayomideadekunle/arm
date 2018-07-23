@@ -63,7 +63,11 @@
                                     <li class="user-header" style="height: auto !important;">
                                         <p>
                                             <?php
-                                            echo $_SESSION['fullname'];
+                                            if ($_SESSION['role'] == 'tenant') {
+                                                echo $_SESSION['fullname'];
+                                            } elseif ($_SESSION['role'] == 'admin') {
+                                                echo $_SESSION['username'];
+                                            }
                                             ?>
                                         </p>
                                     </li>

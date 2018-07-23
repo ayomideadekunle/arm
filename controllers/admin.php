@@ -1,6 +1,6 @@
 <?php
 
-class Index extends Controller {
+class Admin extends Controller {
 
     function __construct() {
         parent::__construct();
@@ -14,7 +14,7 @@ class Index extends Controller {
             // $this->view->render('admin/apartment/index');
             $this->view->render('navigation/footer');
         } else {
-            $this->view->render('login');
+            $this->view->render('admin');
         }
     }
 

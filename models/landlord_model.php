@@ -34,7 +34,7 @@ class Landlord_Model extends Model {
         $param = array(
             ":tenantid" => $id
         );
-        $getinfo_query = $DATABASE->select("SELECT * FROM tenant WHERE id = :tenantid", $param);
+        $getinfo_query = $DATABASE->select("SELECT * FROM users WHERE id = :tenantid", $param);
         return $getinfo_query;
     }
 
@@ -52,7 +52,7 @@ class Landlord_Model extends Model {
         global $DATABASE;
 
         $id = $this->loggedInUser();
-        $query = $DATABASE->select("SELECT * FROM tenant WHERE id = " . $id);
+        $query = $DATABASE->select("SELECT * FROM users WHERE id = " . $id);
         return $query;
     }
 
@@ -75,7 +75,7 @@ class Landlord_Model extends Model {
     public function email_exists($email) {
         global $DATABASE;
 
-        $result = $DATABASE->select("SELECT * FROM `tenant` WHERE email = '$email'");
+        $result = $DATABASE->select("SELECT * FROM `users` WHERE email = '$email'");
         echo json_encode($result);
     }
 
@@ -222,7 +222,7 @@ class Landlord_Model extends Model {
             'currentAddress' => $_POST['currentAddress'],
             'cityStateZip' => $_POST['cityStateZip'],
         );
-        $DATABASE->update("tenant", $tenantData, 'id=' . $tenant_id);
+        $DATABASE->update("users", $tenantData, 'id=' . $tenant_id);
     }
 
     public function chngPassword() {
@@ -236,12 +236,12 @@ class Landlord_Model extends Model {
             'password' => md5($_POST['password'])
         );
         $userid = $this->loggedInUser();
-        $checkIfUserExists = $DATABASE->select("SELECT * FROM tenant "
+        $checkIfUserExists = $DATABASE->select("SELECT * FROM users "
                 . "WHERE id = " . $userid);
 
         if ($checkIfUserExists[0]['password'] == $oldpassword) {
 //            echo 'Present';
-            $chngPwdQuery = $DATABASE->update('tenant', $newpassword, 'id =' . $userid);
+            $chngPwdQuery = $DATABASE->update('users', $newpassword, 'id =' . $userid);
             $response = true;
             return $chngPwdQuery;
         } else {
@@ -257,7 +257,7 @@ class Landlord_Model extends Model {
         // $response = true;
 
         $userid = $this->loggedInUser();
-        $checkIfPasswordExists = $DATABASE->select("SELECT password FROM tenant WHERE id = " . $userid);
+        $checkIfPasswordExists = $DATABASE->select("SELECT password FROM users WHERE id = " . $userid);
         if ($checkIfPasswordExists[0]['password'] == md5($password)) {
 //           return response;
             echo json_encode($checkIfPasswordExists);
@@ -346,7 +346,7 @@ class Landlord_Model extends Model {
 
     public function tenants() {
         global $DATABASE;
-        return $DATABASE->select("select * from tenant");
+        return $DATABASE->select("select * from users");
     }
 
     public function leaseContracts() {
@@ -383,7 +383,7 @@ class Landlord_Model extends Model {
 
     public function fndTenantById($id) {
         global $DATABASE;
-        return $DATABASE->select("select * from tenant where id =" . $id);
+        return $DATABASE->select("select * from users where id =" . $id);
     }
 
     public function fndLeaseContractById($id) {
@@ -410,7 +410,7 @@ class Landlord_Model extends Model {
 
     public function delTenantById($id) {
         global $DATABASE;
-        $DATABASE->delete("tenant", "id =" . $id);
+        $DATABASE->delete("users", "id =" . $id);
     }
 
     public function delRenewedContractById($id) {

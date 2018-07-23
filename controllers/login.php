@@ -11,6 +11,10 @@ class Login extends Controller {
         header("Location: " . URL);
     }
 
+    public function adminLogin(){
+        $this->model->adminLogin();
+    }
+
     public function logout() {
         Session::init();
         @session_destroy();

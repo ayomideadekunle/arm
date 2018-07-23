@@ -31,4 +31,26 @@ class Login_Model extends Model {
         echo "0";
     }
 
+    public function adminLogin() {
+        $username = $_POST['username'];
+        $password = md5($_POST['password']);
+
+        $val = $this->db->select("select * from admin");
+        foreach ($val as $key => $value) {
+//            echo "connected";
+            if ($username == $value['username'] && $password == $value['password']) {
+                $name = "1";
+                @session_start();
+
+                $_SESSION["id"] = $value["id"];
+                $_SESSION["APTRENTALMGT_LOGGED_IN"] = "yeah";
+                $_SESSION["role"] = $value["role"];
+                $_SESSION["username"] = $value["username"];
+
+                echo $name;
+                return FALSE;
+            }
+        }
+        echo "0";
+    }
 }
