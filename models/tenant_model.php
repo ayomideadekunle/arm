@@ -60,6 +60,20 @@ class Tenant_Model extends Model
         echo json_encode($result);
     }
 
+    public function viewNotifications(){
+        global $DATABASE;
+        $userid = $this->loggedInUser();
+        $q = $DATABASE->select("select * from notification where user = " . $userid);
+        return $q;
+    }
+
+    public function loadMessageByid($id){
+        global $DATABASE;
+        $q = $DATABASE->select("select * from notification where id = " .$id);
+        echo json_encode($q);
+        // print_r($q);
+    }
+
     // Create Method
     public function sendMaintenanceRequest()
     {

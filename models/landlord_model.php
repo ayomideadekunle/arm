@@ -76,27 +76,74 @@ class Landlord_Model extends Model
     public function grantRequest($id)
     {
         global $DATABASE;
-        // $chngAptReqs = $this->fndchngAptById($id);
-        // $tenantId = $chngAptReqs[0]['tenant_id'];
-        // $apartmentId = $chngAptReqs[0]['newApartment'];
-        // echo $getTenantId;
+        $q = "select * from apartmentChange where id = " . $id;
+        $run_q = $DATABASE->select($q);
+        // print_r($run_q);
+        // foreach ($run_q as $key => $value) {
+        $lease_id = $run_q[0]["lease_id"];
+        $leaving_Apartment = $run_q[0]["leavingAprtmentid"];
+        $new_apartment = $run_q[0]["newApartment"];
+        $tenant_id = $run_q[0]["tenant_id"];
 
-        $update_lease_tbl = "update lease set apartment_id = " . $apartmentId . "where tenant_id = '$tenantId'";
+        // $aptInfos = $this->apartmentInfo($leaving_Apartment['leavingAprtmentid']);
+        // $apts = $aptInfo($leaving_Apartment['leavingAprtmentid']);
+        // foreach($aptInfos as $apt){
+        //     echo $apt["apartmentNumber"];
+        // }
+
+        $sender = "waLkEr Apartment Management";        
+        $message = "Your request for change of apartment has been granted";
+        $subject = "Apartment Change Request";
+        $date = date("Y:m:d:H:i:s");
+
+        $messageData = array(
+            'user' => $tenant_id,
+            'sender' => $sender,            
+            'message' => $message,
+            'subject' => $subject,
+            'date' => $date,
+        );
+
+        $update_lease_tbl = "update lease set apartment_id = " . $new_apartment . " where id = '$lease_id'";
+        // echo $update_lease_tbl;
         $grant_query = "update apartmentChange set status = 1 where id = '$id'";
 
-        // $this->db->startTransaction();
-        $run_query = $DATABASE->select($grant_query);
-        // $this->db->select($update_lease_tbl);
-        // $this->db->commitTransaction();
-        // return $run_query;
+        // $DATABASE->startTransaction();
+        // $run_query = $DATABASE->select($grant_query);
+        // $DATABASE->select($update_lease_tbl);
+        // $DATABASE->insert("notification", $messageData);
+        // $DATABASE->commitTransaction();
+        // }
     }
 
     public function rejectRequest($id)
     {
         global $DATABASE;
+        $q = "select * from apartmentChange where id = " . $id;
+        $run_q = $DATABASE->select($q);
+
+        $leaving_Apartment = $run_q[0]["leavingAprtmentid"];
+        $new_apartment = $run_q[0]["newApartment"];
+        $tenant_id = $run_q[0]["tenant_id"];
+
+        $sender = "waLkEr Apartment Management";
+        $message = "Your request for change of apartment has been rejected";
+        $subject = "Apartment Change Request";
+        $date = date("Y:m:d:H:i:s");
+
+        $messageData = array(
+            'user' => $tenant_id,
+            'sender' => $sender,
+            'message' => $message,
+            'subject' => $subject,
+            'date' => $date,
+        );
+
+        $DATABASE->startTransaction();
         $reject_query = "update apartmentChange set status = 2 where id = '$id'";
         $run_query = $DATABASE->select($reject_query);
-        // return $run_query;
+        $DATABASE->insert("notification", $messageData);
+        $DATABASE->commitTransaction();
     }
 
     // fetch

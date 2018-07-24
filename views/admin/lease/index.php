@@ -30,6 +30,7 @@ $l_mod = new Landlord_Model();
                                 <th>Security Deposit</th>
                                 <th>Period</th>
                                 <th>Rental Date</th>
+                                <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -72,6 +73,12 @@ $l_mod = new Landlord_Model();
                                     <td><?php echo $contract['securityDeposit']; ?></td>
                                     <td><?php echo $contract['period']; ?></td>
                                     <td><?php echo $contract['rentalDate']; ?></td>
+                                    <td><?php if($contract['status'] == 0){
+                                    echo "Valid";
+                                    } else {
+                                        echo "Terminated";
+                                    }
+                                    ?></td>
                                     <td>
                                         <button onclick="edit_Lease('<?php echo $contract['id']; ?>');" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
                                         <button onclick="delete_Lease('<?php echo $contract['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>

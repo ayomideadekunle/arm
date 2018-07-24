@@ -18,5 +18,6 @@
 <!--<script src="<?php echo URL; ?>public/dist/js/pages/dashboard.js"></script>-->
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo URL; ?>public/dist/js/demo.js"></script>
+<script src="<?php echo URL; ?>public/plugins/iCheck/icheck.min.js"></script>
 </body>
 </html>

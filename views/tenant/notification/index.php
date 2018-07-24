@@ -1,4 +1,6 @@
-        <section class="content-header">
+<title>Notifications</title>
+
+<section class="content-header">
           <h1>
             Read Mail
           </h1>
@@ -17,7 +19,7 @@
                 </div>
                 <div class="box-body no-padding">
                   <ul class="nav nav-pills nav-stacked">
-                    <li><a href="mailbox.html"><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right">12</span></a></li>
+                    <li><a href=""><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right"><?php echo count($this->notifications);?></span></a></li>
                   </ul>
                 </div><!-- /.box-body -->
               </div><!-- /. box -->
@@ -25,27 +27,64 @@
             <div class="col-md-9">
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Read Mail</h3>
-                  <div class="box-tools pull-right">
+                  <h3 class="box-title"><i>Inbox</i></h3>
+                </div><!-- /.box-header -->
+                <div class="mailbox-controls">
+                    <!-- Check all button -->
+                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+                    <div class="btn-group">
+                      <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                    </div><!-- /.btn-group -->
+                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                    <div class="pull-right">
+                      1-50/200
+                      <div class="btn-group">
+                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                      </div><!-- /.btn-group -->
+                    </div><!-- /.pull-right -->
+                  </div>
+
+                  <div class="table-responsive mailbox-messages">
+                    <table class="table table-hover table-striped">
+                      <tbody>
+                      <?php 
+                            $messages = $this->notifications;
+                              foreach ($messages as $message) {
+                                // print_r($messages);
+                          ?>
+                        <tr>
+                          <td><input type="checkbox"></td>
+                          <td class="mailbox-name"><a onclick="loadContent(<?php echo $message['id'] ?>)"><?php echo $message["sender"]; ?></a></td>
+                          <td class="mailbox-subject"><b><?php echo $message["subject"]; ?></b></td>
+                          <!-- <td class="mailbox-attachment"></td> -->
+                          <td class="mailbox-date">5 mins ago</td>
+                        </tr>
+                              <?php } ?>
+                      </tbody>
+                    </table><!-- /.table -->
+                  </div>
+                <div class="box-body no-padding message" style="display: none">
+                <div class="box-tools pull-right">
                     <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
                     <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
                   </div>
-                </div><!-- /.box-header -->
-                <div class="box-body no-padding">
                   <div class="mailbox-read-info">
-                    <h3>Subject</h3>
-                    <h5>From: <b>Admin</b><span class="mailbox-read-time pull-right">15 Feb. 2015 11:03 PM</span></h5>
+                    <h3 id="subject">Subject</h3>
+                    <h5>From: <b id="sender"></b><span class="mailbox-read-time pull-right" id="date_sent"></span></h5>
                   </div><!-- /.mailbox-read-info -->
                   <div class="mailbox-read-message">
-                    <p>Hello John,</p>
-                    <p>test test test test</p>
+                    <p>Hello <?php echo $_SESSION["fullname"]; ?>,</p>
+                    <p id="message"></p>
 
-                  </div><!-- /.mailbox-read-message -->
+                  </div> <!-- /.mailbox-read-message -->
                 </div><!-- /.box-body -->
-                <div class="box-footer">
+                <div class="box-footer message" style="display: none">
                   <button class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
                 </div><!-- /.box-footer -->
               </div><!-- /. box -->
             </div><!-- /.col -->
           </div><!-- /.row -->
         </section><!-- /.content -->
+
+<?php require 'script.php'; ?>

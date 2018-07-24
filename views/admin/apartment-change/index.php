@@ -67,12 +67,9 @@ $l_mod = new Landlord_Model();
                                     ?></td>
                                     <td>
                                     <?php
-                                    if ($aptChng_request["status"] == 2) { ?>
-                                    <button onclick="grant_Request('<?php echo $aptChng_request['id']; ?>');" class="btn btn-success btn-sm">Grant</button>
-                                    <?php } else if ($aptChng_request["status"] == 1) {?>
-                                    <button onclick="reject_Request('<?php echo $aptChng_request['id']; ?>');" class="btn btn-danger btn-sm">Reject</button>                                 
-                                    <?php } else { ?>
-                                    <!-- <a href="<?php echo URL .'landord/grant/' . $aptChng_request["id"] ?>" class="btn btn-success btn-sm">Grant</a>                                         -->
+                                    if ($aptChng_request["status"] == 1 || $aptChng_request["status"] == 2) { ?>
+                                    <?php echo " "; ?>
+                                    <?php } else if($aptChng_request["status"] == 0){ ?>
                                     <button onclick="grant_Request('<?php echo $aptChng_request['id']; ?>');" class="btn btn-success btn-sm">Grant</button>
                                     <button onclick="reject_Request('<?php echo $aptChng_request['id']; ?>');" class="btn btn-danger btn-sm">Reject</button>
                                     <?php } ?>
@@ -127,6 +124,7 @@ $l_mod = new Landlord_Model();
     function grant_Request(id){
         $.post("http://arm/landlord/grant/" + id, function (resp) {
                 alert("Granted");
+                console.log(resp);
                 location = "http://arm/landlord/apartment_change_requests";
 //                window.reload;
             });
