@@ -75,7 +75,10 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                            <button class="btn btn-default btn-flat" onclick="showProfile();">Profile</button>
+                                        <?php 
+                                            if($_SESSION["role"] == "tenant"){ ?>
+                                            <button class="btn btn-default btn-flat" onclick="showProfile();">Profile</button>                                                
+                                            <?php } ?>
                                         </div>
                                         <div class="pull-right">
                                             <button onclick="logout();" class="btn btn-danger btn-flat" id="logout_link">Sign out</button>
@@ -111,9 +114,9 @@
                             <li><a href="<?php echo URL; ?>landlord/maintenanceCategories"><i class="fa fa-list"></i> <span>Maintenance Categories</span></a></li>
                         <?php } elseif ($_SESSION['role'] == 'tenant') {
                             ?>
-                            <li><a href = "<?php echo URL; ?>tenant/requestmaintenance"><i class = "fa fa-plus-square"></i> <span>Request Maintenance</span></a></li>
-                            <li><a href = "<?php echo URL; ?>tenant/request"><i class = "fa fa-plus-square"></i> <span>Request</span></a></li>
-                            <li><a href = "<?php echo URL; ?>tenant/test"><i class = "fa fa-bell"></i> <span>Notifications</span></a></li>
+                            <!-- <li><a href = "<?php echo URL; ?>tenant/requestmaintenance"><i class = "fa fa-plus-square"></i> <span>Request Maintenance</span></a></li> -->
+                            <li><a href = "<?php echo URL; ?>tenant/request"><i class = "fa fa-plus"></i> <span>Send Request</span></a></li>
+                            <li><a href = "<?php echo URL; ?>tenant/notifications"><i class = "fa fa-bell"></i> <span>Notifications</span></a></li>
                         <?php }
                         ?>
                     </ul>

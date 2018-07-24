@@ -39,20 +39,6 @@ class Tenant extends Controller
 
     // Create Form Pages
 
-    public function requestmaintenance()
-    {
-        Session::init();
-        if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
-            $this->view->categories = $this->model->mntCats();
-// render create page
-            $this->view->render('navigation/header');
-            $this->view->render('tenant/maintenance/create');
-            $this->view->render('navigation/footer');
-        } else {
-// render login page
-        }
-    }
-
     public function request()
     {
         Session::init();
@@ -87,7 +73,8 @@ class Tenant extends Controller
         $this->model->checkApartment($apt_id);
     }
 
-    public function loadMessage($message_id){
+    public function loadMessage($message_id)
+    {
         $this->model->loadMessageByid($message_id);
         // $this->view->render("navigation/header");
         // $this->view->render("tenant/notification/message");
@@ -101,7 +88,7 @@ class Tenant extends Controller
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
             // $this->view->chngAptData = $this->model->findChangeAptById();
-            $this->view->notifications = $this->model->viewNotifications();            
+            $this->view->notifications = $this->model->viewNotifications();
             // render edit page
             $this->view->render('navigation/header');
             $this->view->render('tenant/notification/index');

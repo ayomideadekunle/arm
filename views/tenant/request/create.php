@@ -55,6 +55,25 @@
                         <textarea class="form-control leavingReason" name="leavingReason" rows="2"></textarea>
                     </div>
 
+                    <div class="form-group maintenance" style="display: none">
+                        <label>Category</label>
+                        <select class="form-control category_id" name="category_id">
+                            <?php
+                            $categories = $this->categories;
+                            foreach ($categories as $category) {
+                                ?>
+                                <option value="<?php echo $category['id']; ?>">
+                                    <?php echo $category['categoryName']; ?>
+                                </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
+                    <div class="form-group maintenance" style="display: none">
+                        <label for="request">Request</label>
+                        <textarea class="form-control request" rows="3" placeholder="Enter ..." name="request"></textarea>
+                    </div>
+
                 </div><!-- /.box-body -->
 
                 <div class="box-footer">
@@ -73,12 +92,19 @@
             if (text === "Change Apartment") {
                 $(".aptChange").show();
                 $(".termination").hide();
+                $(".maintenance").hide();
             } else if (text === "Terminate Lease") {
                 $(".termination").show();
+                $(".aptChange").hide();
+                $(".maintenance").hide();
+            } else if(text === "Maintenance"){
+                $(".maintenance").show();
+                $(".termination").hide();
                 $(".aptChange").hide();
             } else {
                 $(".termination").hide();
                 $(".aptChange").hide();
+                $(".maintenance").hide();
             }
             return text;
         });
@@ -98,8 +124,6 @@
                 success: function (data) {
                    alert("Successful");
                    location = "http://arm";
-                    // $("#success").removeClass("hidden");
-                    // $('#success').append("<h4>Successfull!!!</h4>").delay(3000).fadeOut(3000);
                 },
                 error: function () {
                 }
@@ -116,15 +140,29 @@
                 data: {leavingDate: date, leavingReason: reason },
                 success: function (data) {
                    alert("Successful");
-                   location = "http://arm";                   
-                    // $("#success").removeClass("hidden");
-                    // $('#success').append("<h4>Successfull!!!</h4>").delay(3000).fadeOut(3000);
+                   location = "http://arm";
+                },
+                error: function () {
+                }
+            });
+            } else if(request_cat === "Maintenance"){
+                var url = "http://arm/tenant/handleMaintenanceRequest"
+                var category = $(".category_id").val();
+                var request = $(".request").val();
+
+                $.ajax({
+                type: 'POST',
+                url: url,
+                data: {category_id: category, request: request },
+                success: function (data) {
+                   alert("Successful");
+                   location = "http://arm";
                 },
                 error: function () {
                 }
             });
             } else {
-                alert("Please select request type");
+                alert("Please select request type");                
             }
             // console.log(request_cat);
 
