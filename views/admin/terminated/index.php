@@ -90,14 +90,6 @@ $l_mod = new Landlord_Model();
         })
 
     }
-
-    function grant_Request(id){
-        $.post("http://arm/landlord/grant/" + id, function (resp) {
-                alert("Granted");
-                location = "http://arm/landlord/apartment_change_requests";
-//                window.reload;
-            });
-    }
 </script>
 
 <script>

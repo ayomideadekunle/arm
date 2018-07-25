@@ -14,7 +14,7 @@
                 var availabileText = $(".availability");
                 apartmentNumber.empty();
                 $.each(JSON.parse(response), function (response, item) {
-                    console.log(item);
+                    // console.log(item);
                     apartmentNumber.append($("<option />", {
                         value: item.id,
                         text: item.apartmentNumber + ' ' + item.apartmentType
@@ -53,6 +53,26 @@
         });
     }
 
+    function populate(){
+        var id = $(".building_id").val();
+            // console.log(id);
+            $.get("http://arm/landlord/fetchApartments/" + id, function (response) {
+                var apartmentNumber = $(".apartmentNumber");
+                var availabileText = $(".availability");
+                apartmentNumber.empty();
+                $.each(JSON.parse(response), function (response, item) {
+                    // console.log(item);
+                    apartmentNumber.append($("<option />", {
+                        value: item.id,
+                        text: item.apartmentNumber + ' ' + item.apartmentType
+                    }));
+//                    availabileText.append($("<input />", {
+//                        value: item.status,
+//                    }));
+                });
+            });
+    }
+
     function delete_Lease(id) {
         $("#delete_lease").modal('show');
         $(".delete").click(function () {
@@ -65,6 +85,52 @@
         $(".cancel").click(function () {
             $("#delete_lease").modal("hide");
         })
-
     }
+
+    function editLease(id){
+        var postData = {
+            tenant_id: $(".tenant_id").val(),
+            building_id: $(".building_id").val(),
+            apartment_id: $(".apartmentNumber").val(),
+            startDate: $(".startDate").val(),
+            endDate: $(".endDate").val(),
+            balance: $(".balance").val(),
+            securityDeposit: $(".securityDeposit").val(),
+            period: $(".period").val(),
+            rentalDate: $(".rentalDate").val()
+        }
+        // console.log(postData);
+        // console.log(id);
+        $.ajax({
+                type: 'POST',
+                url: "http://arm/landlord/editLeaseContract/" + id,
+                data: postData,
+                success: function (data) {
+                    // $("#edit_building").modal("hide");
+                    location = "http://arm/landlord/leaseContracts";
+                },
+                error: function () {}
+            });
+    }
+
+$(function() {
+    // $('.datepick').daterangepicker();
+    $('.datepicker').datepicker();
+$(".process").submit(function (e) {
+        // event.preventDefault();
+        var postData = $(this).serialize();
+        var url = "http://arm/landlord/handleLeaseContract";
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: postData,
+            success: function (data) {
+                location = "http://arm/landlord/leaseContracts";
+            },
+            error: function () {}
+        });
+        return false;
+    });
+});
 </script>

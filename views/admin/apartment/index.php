@@ -73,14 +73,10 @@ $l_mod = new Landlord_Model();
             </div>
             <div class="modal-body">
 
-                <div id="success" class="alert alert-success hidden" role="alert">
-                </div>
-
                 <div id="errorMessage" class="alert alert-danger hidden" role="alert">
                 </div>
 
-                <form role="form" class="apartmentForm" onclick="processSubmission()"
-                      action="<?php echo URL ?>landlord/handleCreateApartment">
+                <form role="form" class="apartmentForm">
                     <div class="box-body">
 
                         <div class="form-group">

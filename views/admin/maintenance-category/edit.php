@@ -8,13 +8,13 @@ foreach ($edit_data as $value) {
 
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" class="form-control" placeholder="Enter Category Name" name="categoryName" value="<?php echo $value['categoryName'];?>">
+            <input type="text" class="form-control categoryName" placeholder="Enter Category Name" name="categoryName" value="<?php echo $value['categoryName'];?>">
         </div>
 
     </div><!-- /.box-body -->
 
     <div class="box-footer">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" onclick="editCategory(<?php echo $value['id'];?>);">Submit</button>
     </div>
 </form>
 

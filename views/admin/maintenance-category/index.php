@@ -44,7 +44,7 @@
     </div>
 </section>
 
-<!-- Add Apartment Modal -->
+<!-- Add Maintenance Category Modal -->
 <div id="new_mntcat" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
@@ -55,7 +55,7 @@
                 <h4 class="modal-title">Add Maintenance Category</h4>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="<?php echo URL ?>landlord/handleCreateMntCat">
+                <form role="form" method="post" class="process">
                     <div class="box-body">
 
                         <div class="form-group">

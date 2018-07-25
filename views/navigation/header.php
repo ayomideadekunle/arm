@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="<?php echo URL; ?>public/dist/css/dataTables.bootstrap.css">
         <link rel="stylesheet" href="<?php echo URL; ?>public/plugins/iCheck/flat/blue.css">
         <link rel="stylesheet" href="<?php echo URL; ?>public/plugins/select2/select2.min.css">
+        <link rel="stylesheet" href="<?php echo URL; ?>public/plugins/datepicker/datepicker3.css">
         <script src="<?php echo URL; ?>public/jquery.js"></script>
 
         <script>

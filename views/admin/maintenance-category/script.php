@@ -20,6 +20,40 @@
         $(".cancel").click(function () {
             $("#delete_mntcat").modal("hide");
         })
-
     }
+
+    function editCategory(id){
+        var postData = {
+            categoryName: $(".categoryName").val()
+        }
+
+        $.ajax({
+                type: 'POST',
+                url: "http://arm/landlord/editMaintenanceCat/" + id,
+                data: postData,
+                success: function (data) {
+                    location = "http://arm/landlord/maintenanceCategories";
+                },
+                error: function () {}
+            });
+    }
+
+$(function(){
+    $(".process").submit(function (e) {
+        // event.preventDefault();
+        var postData = $(this).serialize();
+        var url = "http://arm/landlord/handleCreateMntCat";
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: postData,
+            success: function (data) {
+                location = "http://arm/landlord/maintenanceCategories";
+            },
+            error: function () {}
+        });
+            return false;
+        });
+    });
 </script>

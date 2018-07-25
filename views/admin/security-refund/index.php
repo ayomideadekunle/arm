@@ -62,7 +62,7 @@ $l_mod = new Landlord_Model();
                 <h4 class="modal-title">Add Security Refund</h4>
             </div>
             <div class="modal-body">
-                <form role="form" method="post" action="<?php echo URL ?>landlord/handleSecurityRefund">
+                <form role="form" method="post" class="process">
                     <div class="box-body">
 
                         <div class="form-group">

@@ -444,6 +444,7 @@ class Landlord_Model extends Model
             'securityDeposit' => $_POST['securityDeposit'],
             'period' => $_POST['period'],
             'rentalDate' => $_POST['rentalDate'],
+            'status' => 0
         );
         $query = "UPDATE apartment SET status = 1 WHERE id = " . $_POST['apartment_id'];
 

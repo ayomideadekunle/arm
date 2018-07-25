@@ -3,12 +3,12 @@ $l_mod = new Landlord_Model();
 $edit_data = $this->leaseData;
 foreach ($edit_data as $value) {
     ?>
-    <form role="form" method="post" action="<?php echo URL ?>landlord/editLeaseContract/<?php echo $value['id'] ?>">
+    <form role="form" method="post">
         <div class="box-body">
 
             <div class="form-group">
                 <label>Tenant</label>
-                <select class="form-control" name="tenant_id" id="tenant_id">
+                <select class="form-control tenant_id" name="tenant_id" id="tenant_id">
                     <?php
                     $tenants = $this->tenants;
                     foreach ($tenants as $tenant) {
@@ -24,18 +24,16 @@ foreach ($edit_data as $value) {
                 </select>
             </div>
 
-            <div class="alert alert-warning alert-dismissable hidden" id="error">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <i class="icon fa fa-warning"></i>Already Existed</div>
-
             <div class="form-group">
                 <label>Building</label>
-                <select class="form-control buildingsSelect" name="building_id" id="buildingsSelect">
+                <select class="form-control buildingsSelect building_id" name="building_id" id="buildingsSelect" onchange="populate();">
+                <option selected>Select Building</option>
                     <?php
                     $buildings = $this->buildings;
                     foreach ($buildings as $building) {
                         ?>
-                        <option value="<?php echo $building['id']; ?>" <?php if ($building['id'] == $value['building_id']) echo 'selected'; ?>>
+                         <!-- <?php if ($building['id'] == $value['building_id']) echo 'selected'; ?> -->
+                        <option value="<?php echo $building['id']; ?>">
                             <?php echo $building['buildingName']; ?>
                         </option>
                     <?php } ?>
@@ -51,38 +49,53 @@ foreach ($edit_data as $value) {
 
             <div class="form-group">
                 <label for="startDate">Start Date</label>
-                <input type="date" class="form-control" placeholder="Enter Start Date" name="startDate" value="<?php echo $value['startDate'] ?>">
+                <!-- <input type="date" class="form-control startDate" placeholder="Enter Start Date" name="startDate" > -->
+                <div class="input-group date" data-provide="datepicker">
+                    <input type="text" class="form-control" name="startDate" placeholder="Start Date" value="<?php echo $value['startDate'] ?>">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="endDate">End Date</label>
-                <input type="date" class="form-control" placeholder="Enter End Date" name="endDate" value="<?php echo $value['endDate'] ?>">
+                <!-- <input type="date" class="form-control" placeholder="Enter End Date" name="endDate" value="<?php echo $value['endDate'] ?>"> -->
+                <div class="input-group date" data-provide="datepicker">
+                    <input type="text" class="form-control" name="endDate" placeholder="End Date" data-date="<?php echo $value['endDate'] ?>">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
             </div>
 
             <div class="form-group">
                 <label for="balance">Balance</label>
-                <input type="text" class="form-control" placeholder="Enter Balance" name="balance" value="<?php echo $value['balance'] ?>">
+                <input type="text" class="form-control balance" placeholder="Enter Balance" name="balance" value="<?php echo $value['balance'] ?>">
             </div>
 
             <div class="form-group">
                 <label for="secDeposit">Security Deposit</label>
-                <input type="text" class="form-control" placeholder="Enter Security Deposit" name="securityDeposit" value="<?php echo $value['securityDeposit'] ?>">
+                <input type="text" class="form-control securityDeposit" placeholder="Enter Security Deposit" name="securityDeposit" value="<?php echo $value['securityDeposit'] ?>">
             </div>
 
             <div class="form-group">
                 <label for="period">Period</label>
-                <input type="text" class="form-control" placeholder="Enter Period" name="period" value="<?php echo $value['period'] ?>">
+                <input type="text" class="form-control period" placeholder="Enter Period" name="period" value="<?php echo $value['period'] ?>">
             </div>
 
             <div class="form-group">
                 <label for="rentalDate">Rental Date</label>
-                <input type="text" class="form-control" placeholder="Enter Rental Date" name="rentalDate" value="<?php echo $value['rentalDate'] ?>">
+                <!-- <input type="text" class="form-control rentalDate" placeholder="Enter Rental Date" name="rentalDate" value="<?php echo $value['rentalDate'] ?>"> -->
+                <div class="input-group date" data-provide="datepicker">
+                    <input type="text" class="form-control" name="rentalDate" placeholder="Rental Date" value="<?php echo $value['rentalDate'] ?>">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
             </div>
 
         </div><!-- /.box-body -->
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" onclick="editLease(<?php echo $value['id']; ?>);">Submit</button>
         </div>
     </form>
 

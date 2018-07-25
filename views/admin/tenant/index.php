@@ -72,7 +72,7 @@
                 <div id="errorMessage" class="alert alert-danger hidden" role="alert">
                 </div>
 
-                <form role="form" method="post" action="<?php echo URL ?>landlord/handleCreateTenant" onsubmit="checkPassword(event)">
+                <form role="form" method="post" class="process" onsubmit="checkPassword(event)">
                     <div class="box-body">
 
                         <div class="form-group">

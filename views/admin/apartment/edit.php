@@ -1,15 +1,13 @@
-<!--<title>Edit Apartment</title>-->
-
 <?php
 $edit_data = $this->apartmentData;
 foreach ($edit_data as $value) {
     ?>
-    <form role="form" method="post" action="<?php echo URL ?>landlord/editApartment/<?php echo $value['id'] ?>">
+    <form role="form" method="post" class="editApartment">
         <div class="box-body">
 
             <div class="form-group">
                 <label>Building</label>
-                <select class="form-control" name="building_id">
+                <select class="form-control building_id" name="building_id">
                     <?php
                     $buildings = $this->buildings;
                     foreach ($buildings as $building) {
@@ -23,7 +21,7 @@ foreach ($edit_data as $value) {
 
             <div class="form-group">
                 <label>Apartment Type</label>
-                <select class="form-control" name="apartmentType">
+                <select class="form-control apartmentType" name="apartmentType">
                     <option value="Duplex" <?php if ($value['apartmentType'] == 'Duplex') echo 'selected'; ?>>
                         Duplex
                     </option>
@@ -41,22 +39,22 @@ foreach ($edit_data as $value) {
 
             <div class="form-group">
                 <label for="apartmentno">Apartment Number</label>
-                <input type="text" class="form-control" placeholder="Enter Apartment Number" name="apartmentNumber" value="<?php echo $value['apartmentNumber']; ?>">
+                <input type="text" class="form-control apartmentNumber" placeholder="Enter Apartment Number" name="apartmentNumber" value="<?php echo $value['apartmentNumber']; ?>">
             </div>
 
             <div class="form-group">
                 <label for="rentalfee">Rental Fee</label>
-                <input type="text" class="form-control" placeholder="Enter Rental Fee" name="rentalFee" value="<?php echo $value['rentalFee']; ?>">
+                <input type="text" class="form-control rentalFee" placeholder="Enter Rental Fee" name="rentalFee" value="<?php echo $value['rentalFee']; ?>">
             </div>
 
             <div class="form-group">
                 <label for="size">Size</label>
-                <input type="text" class="form-control" placeholder="Enter Size" name="size" value="<?php echo $value['size']; ?>">
+                <input type="text" class="form-control size" placeholder="Enter Size" name="size" value="<?php echo $value['size']; ?>">
             </div>
 
             <div class="form-group">
                 <label>Availability</label>
-                <select class="form-control" name="apartmentType">
+                <select class="form-control status" name="status">
                     <option value="0" <?php if ($value['status'] == 0 ) echo 'selected'; ?>>
                         Available
                     </option>
@@ -69,7 +67,7 @@ foreach ($edit_data as $value) {
         </div><!-- /.box-body -->
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary"  onclick="editApartment(<?php echo $value['id']; ?>)">Submit</button>
         </div>
     </form>
 <?php } ?>

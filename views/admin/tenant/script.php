@@ -17,6 +17,23 @@
                 });
             });
         });
+
+    $(".process").submit(function (e) {
+        // event.preventDefault();
+        var postData = $(this).serialize();
+        var url = "http://arm/landlord/handleCreateTenant";
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: postData,
+            success: function (data) {
+                location = "http://arm/landlord/tenants";
+            },
+            error: function () {}
+        });
+            return false;
+        });
     });
 
     function edit_Tenant(id) {
@@ -50,6 +67,26 @@
         $(".cancel").click(function () {
             $("#delete_tenant").modal("hide");
         })
+    }
 
+    function editTenant(id){
+        var postData = {
+            firstname: $(".firstname").val(),
+            lastname: $(".lastname").val(),
+            phone: $(".phone").val(),
+            cityStateZip: $(".cityStateZip").val(),
+            currentAddress: $(".currentAddress").val(),
+            email: $(".email").val()
+        }
+
+        $.ajax({
+                type: 'POST',
+                url: "http://arm/landlord/editTenant/" + id,
+                data: postData,
+                success: function (data) {
+                    location = "http://arm/landlord/tenants";
+                },
+                error: function () {}
+            });
     }
 </script>

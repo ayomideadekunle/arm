@@ -19,30 +19,48 @@
         $(".cancel").click(function () {
             $("#delete_apartment").modal("hide");
         })
-
     }
 
-    function processSubmission() {
-        $(".apartmentForm").submit(function () {
+    function editApartment(id){
+        var postData = {
+            building_id: $(".building_id").val(),
+            apartmentType: $(".apartmentType").val(),
+            apartmentNumber: $(".apartmentNumber").val(),
+            rentalFee: $(".rentalFee").val(),
+            size: $(".size").val(),
+            status: $(".status").val()
+        }
+        // console.log(postData);
+        // console.log(id);
+        $.ajax({
+                type: 'POST',
+                url: "http://arm/landlord/editApartment/" + id,
+                data: postData,
+                success: function (data) {
+                    // $("#edit_apartment").modal("hide");
+                    location = "http://arm/landlord/apartments";
+                },
+                error: function () {}
+            });
+    }
+
+    $(function(){
+        $(".apartmentForm").submit(function (e) {
+            // event.preventDefault();
             var postData = $(this).serialize();
-            var url = $(this).attr("action");
+            var url = "http://arm/landlord/handleCreateApartment";
 
             $.ajax({
                 type: 'POST',
                 url: url,
                 data: postData,
                 success: function (data) {
-//                    alert("Successful");
-                    $("#success").removeClass("hidden");
-                    $('#success').append("<h4>Successfull!!!</h4>").delay(3000).fadeOut(3000);
-
-                    $("#new_apartment").modal("hide");
+                    // $("#new_apartment").modal("hide");
+                    location = "http://arm/landlord/apartments";
                 },
-                error: function () {
-                }
+                error: function () {}
             });
             return false;
         });
-//        event.preventDefault();
-    }
+    });
 </script>

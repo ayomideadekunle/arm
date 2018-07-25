@@ -111,7 +111,7 @@ $l_mod = new Landlord_Model();
                 <div id="errorMessage" class="alert alert-danger hidden" role="alert">
                 </div>
 
-                <form role="form" method="post" action="<?php echo URL ?>landlord/handleLeaseContract">
+                <form role="form" method="post" class="process">
                     <div class="box-body">
 
                         <div class="form-group">
@@ -160,33 +160,45 @@ $l_mod = new Landlord_Model();
                         </div>
 
                         <div class="form-group">
-                            <label for="startDate">Start Date</label>
-                            <input type="date" class="form-control" placeholder="Enter Start Date" name="startDate">
+                        <label for="period">Start Date</label>                        
+                        <div class="input-group date" data-provide="datepicker">
+                            <input type="text" class="form-control startDate" name="startDate" placeholder="Start Date">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="endDate">End Date</label>
-                            <input type="date" class="form-control" placeholder="Enter End Date" name="endDate">
+                        <label for="period">End Date</label>                        
+                        <div class="input-group date" data-provide="datepicker">
+                            <input type="text" class="form-control endDate" name="endDate" placeholder="End Date">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
                         </div>
 
                         <div class="form-group">
                             <label for="balance">Balance</label>
-                            <input type="text" class="form-control" placeholder="Enter Balance" name="balance">
+                            <input type="text" class="form-control balance" placeholder="Enter Balance" name="balance">
                         </div>
 
                         <div class="form-group">
                             <label for="secDeposit">Security Deposit</label>
-                            <input type="text" class="form-control" placeholder="Enter Security Deposit" name="securityDeposit">
+                            <input type="text" class="form-control securityDeposit" placeholder="Enter Security Deposit" name="securityDeposit">
                         </div>
 
                         <div class="form-group">
                             <label for="period">Period</label>
-                            <input type="text" class="form-control" placeholder="Enter Period" name="period">
+                            <input type="text" class="form-control period" placeholder="Enter Period" name="period">
                         </div>
 
                         <div class="form-group">
-                            <label for="rentalDate">Rental Date</label>
-                            <input type="text" class="form-control" placeholder="Enter Rental Date" name="rentalDate">
+                        <label for="period">Rental Date</label>                        
+                        <div class="input-group date" data-provide="datepicker">
+                            <input type="text" class="form-control rentalDate" name="rentalDate" placeholder="Rental Date">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
                         </div>
 
                     </div><!-- /.box-body -->

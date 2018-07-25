@@ -20,5 +20,6 @@
 <script src="<?php echo URL; ?>public/dist/js/demo.js"></script>
 <script src="<?php echo URL; ?>public/plugins/iCheck/icheck.min.js"></script>
 <script src="<?php echo URL; ?>public/plugins/select2/select2.full.min.js"></script>
+<script src="<?php echo URL; ?>public/plugins/datepicker/bootstrap-datepicker.js"></script>
 </body>
 </html>

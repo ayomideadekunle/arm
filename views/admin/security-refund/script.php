@@ -20,6 +20,42 @@
         $(".cancel").click(function () {
             $("#delete_refund").modal("hide");
         })
-
     }
+
+    function editSecRefund(id){
+        var postData = {
+            refundAmount: $(".refundAmount").val(),
+            refundReason: $(".refundReason").val(),
+            date: $(".date").val()
+        }
+
+        $.ajax({
+                type: 'POST',
+                url: "http://arm/landlord/editSecurityRefund/" + id,
+                data: postData,
+                success: function (data) {
+                    location = "http://arm/landlord/securityRefunds";
+                },
+                error: function () {}
+            });
+    }
+
+$(function(){
+    $(".process").submit(function (e) {
+        // event.preventDefault();
+        var postData = $(this).serialize();
+        var url = "http://arm/landlord/handleSecurityRefund";
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: postData,
+            success: function (data) {
+                location = "http://arm/landlord/securityRefunds";
+            },
+            error: function () {}
+        });
+            return false;
+        });
+    });
 </script>
