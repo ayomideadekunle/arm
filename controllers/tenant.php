@@ -84,6 +84,10 @@ class Tenant extends Controller
         // $this->view->render("navigation/footer");
     }
 
+    public function refresh(){
+        $this->model->refreshInbox();
+    }
+
     // Test Page
 
     public function test()

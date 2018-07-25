@@ -67,6 +67,13 @@ class Tenant_Model extends Model
         return $q;
     }
 
+    public function refreshInbox(){
+        global $DATABASE;
+        $userid = $this->loggedInUser();
+        $q = $DATABASE->select("select * from notification where user = " . $userid);
+        echo json_encode($q);
+    }
+
     public function loadMessageByid($id){
         global $DATABASE;
         $q = $DATABASE->select("select * from notification where id = " .$id);

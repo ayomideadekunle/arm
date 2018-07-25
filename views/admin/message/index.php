@@ -66,6 +66,7 @@
             // } else {
             $.post(url, postData, function(result){
                 // console.log(messageData);
+                location = "http://arm";
             });
             // }
             // return false;

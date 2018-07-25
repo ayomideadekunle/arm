@@ -10,6 +10,7 @@ class Index extends Controller {
     public function index() {
         Session::init();
         if (isset($_SESSION["APTRENTALMGT_LOGGED_IN"])) {
+            $this->view->title = "Home";
             $this->view->render('navigation/header');
             // $this->view->render('admin/apartment/index');
             $this->view->render('navigation/footer');
