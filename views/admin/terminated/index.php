@@ -1,5 +1,3 @@
-<title>Terminated Contracts</title>
-
 <?php
 $l_mod = new Landlord_Model();
 ?>

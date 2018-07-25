@@ -1,4 +1,3 @@
-<title>Maintenance Categories</title>
 <section class="content">
     <div class="row">
         <div class="col-xs-12">

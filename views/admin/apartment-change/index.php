@@ -1,5 +1,3 @@
-<title>Change Apartment Request</title>
-
 <?php
 $l_mod = new Landlord_Model();
 ?>

@@ -1,4 +1,3 @@
-<title>Request</title>
 
 <section class="content">
     <div class="row">

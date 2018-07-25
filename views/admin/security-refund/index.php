@@ -1,4 +1,3 @@
-<title>Security Refunds</title>
 <?php
 $l_mod = new Landlord_Model();
 ?>

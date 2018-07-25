@@ -15,6 +15,7 @@ class Tenant extends Controller
         Session::init();
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
 // display dashboard
+            $this->view->title = "Home";
         } else {
 // display login page
         }
@@ -46,6 +47,7 @@ class Tenant extends Controller
             $this->view->requestcats = $this->model->requestCategories();
             $this->view->apartments = $this->model->loadApartments();
 // render create page
+            $this->view->title = "Send Request";
             $this->view->render('navigation/header');
             $this->view->render('tenant/request/create');
             $this->view->render('navigation/footer');
@@ -60,6 +62,7 @@ class Tenant extends Controller
         if (Session::get("APTRENTALMGT_LOGGED_IN") == true) {
             $this->view->notifications = $this->model->viewNotifications();
 // render edit page
+            $this->view->title = "Notifications";
             $this->view->render('navigation/header');
             $this->view->render('tenant/notification/index');
             $this->view->render('navigation/footer');

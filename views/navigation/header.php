@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <title><?php echo $this->title; ?></title>
         <!-- Bootstrap 3.3.5 -->
         <link rel="stylesheet" href="<?php echo URL; ?>public/bootstrap/css/bootstrap.min.css">
         <!-- Font-awesome-->
@@ -14,6 +15,7 @@
         <link rel="stylesheet" href="<?php echo URL; ?>public/dist/css/skins/_all-skins.min.css">
         <link rel="stylesheet" href="<?php echo URL; ?>public/dist/css/dataTables.bootstrap.css">
         <link rel="stylesheet" href="<?php echo URL; ?>public/plugins/iCheck/flat/blue.css">
+        <link rel="stylesheet" href="<?php echo URL; ?>public/plugins/select2/select2.min.css">
         <script src="<?php echo URL; ?>public/jquery.js"></script>
 
         <script>
@@ -107,7 +109,7 @@
                             <li><a href="<?php echo URL; ?>landlord/tenants"><i class="fa fa-users"></i> <span>Tenants</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/maintenancerequests"><i class="fa fa-list"></i> <span>Maintenance Requests</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/apartment_change_requests"><i class="fa fa-list"></i> <span>Change Apartment Request</span></a></li>
-                            <!-- <li><a href="<?php echo URL; ?>landlord/renewedContracts"><i class="fa fa-list"></i> <span>Renewals</span></a></li> -->
+                            <li><a href="<?php echo URL; ?>landlord/sendMessage"><i class="fa fa-inbox"></i> <span>Send Message</span></a></li>
                             <!--<li><a href="<?php echo URL; ?>landlord/"><i class="fa fa-money"></i> <span>Payment</span></a></li>-->
                             <li><a href="<?php echo URL; ?>landlord/terminatedContracts"><i class="fa fa-list"></i> <span>Terminated Contracts</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/securityRefunds"><i class="fa fa-list"></i> <span>Security Refunds</span></a></li>

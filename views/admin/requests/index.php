@@ -1,5 +1,3 @@
-<title>Maintenance Requests</title>
-
 <?php
 $l_mod = new Landlord_Model();
 ?>

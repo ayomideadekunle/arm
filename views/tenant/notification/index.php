@@ -1,4 +1,3 @@
-<title>Notifications</title>
 
 <section class="content-header">
           <h1>

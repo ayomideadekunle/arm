@@ -91,14 +91,14 @@ class Landlord_Model extends Model
         //     echo $apt["apartmentNumber"];
         // }
 
-        $sender = "waLkEr Apartment Management";        
+        $sender = "waLkEr Apartment Management";
         $message = "Your request for change of apartment has been granted";
         $subject = "Apartment Change Request";
         $date = date("Y:m:d:H:i:s");
 
         $messageData = array(
             'user' => $tenant_id,
-            'sender' => $sender,            
+            'sender' => $sender,
             'message' => $message,
             'subject' => $subject,
             'date' => $date,
@@ -296,6 +296,33 @@ class Landlord_Model extends Model
             'date' => $_POST['date'],
         );
         $DATABASE->insert('securityRefund', $secRfdData);
+    }
+
+    public function sendNotification()
+    {
+        global $DATABASE;
+        $date = date("Y-m-d H:i:s");
+
+        // $messageData = array(
+        //     "user" => $_POST["user"],
+        //     "subject" => $_POST["subject"],
+        //     "message" => $_POST["message"],
+        //     "date" => $date,
+        // );
+
+        $recipients = $_POST["user"];
+
+        // $recipients = explode(', ', $recipient);
+        foreach ($recipients as $recipient) {
+            $recipients .= $recipient . ",";
+            $DATABASE->insert("notification", array(
+                "user" => $recipient,
+                "sender" => "Admin",
+                "subject" => $_POST["subject"],
+                "message" => $_POST["message"],
+                "date" => $date,
+            ));
+        }
     }
 
 // Update Method

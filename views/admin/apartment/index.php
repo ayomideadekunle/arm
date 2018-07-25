@@ -1,4 +1,3 @@
-<title>Manage Apartments</title>
 <?php
 $l_mod = new Landlord_Model();
 ?>
