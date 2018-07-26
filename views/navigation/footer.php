@@ -4,7 +4,7 @@
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
     </div>
-    <strong>Copyright &copy; <?php echo date("Y"); ?> <a  href="http://fiverr.com/user/adamsgrey" target="_blank"> Grey Adams</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; <?php echo date("Y"); ?> <a  href="#" target="_blank"> Waliyullah Roji</a>.</strong> All rights reserved.
 </footer>
 
 <script src="<?php echo URL; ?>public/dist/js/jquery.dataTables.min.js"></script>

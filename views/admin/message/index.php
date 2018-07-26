@@ -23,19 +23,15 @@
                     <input class="form-control subject" placeholder="Subject:" name="subject">
                   </div>
                   <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control message" style="height: 300px" name="message"></textarea>
+                    <textarea id="compose-textarea" class="form-control message" style="height: 100px" name="message"></textarea>
                   </div>
                 </div><!-- /.box-body -->
                 <div class="box-footer">
                   <div class="pull-right">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
                   </div>
                 </div>
                 </div><!-- /.box-body -->
-
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
             </form>
         </div>
     </div>

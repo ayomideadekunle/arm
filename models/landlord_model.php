@@ -94,7 +94,7 @@ class Landlord_Model extends Model
         $sender = "waLkEr Apartment Management";
         $message = "Your request for change of apartment has been granted";
         $subject = "Apartment Change Request";
-        $date = date("Y:m:d:H:i:s");
+        $date = date("Y-m-d H:i:s");
 
         $messageData = array(
             'user' => $tenant_id,
@@ -129,7 +129,7 @@ class Landlord_Model extends Model
         $sender = "waLkEr Apartment Management";
         $message = "Your request for change of apartment has been rejected";
         $subject = "Apartment Change Request";
-        $date = date("Y:m:d:H:i:s");
+        $date = date("Y-m-d H:i:s");
 
         $messageData = array(
             'user' => $tenant_id,
