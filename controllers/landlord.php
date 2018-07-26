@@ -58,7 +58,7 @@ class Landlord extends Controller
         } else {
 //            $error_msg = "Incorrect password";
             echo "Incorrect password";
-//            header("http://arm/landlord/tenantProfile");
+//            header("http://localhost/apartment-rental-mgt/landlord/tenantProfile");
         }
     }
 

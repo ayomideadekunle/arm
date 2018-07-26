@@ -160,7 +160,7 @@ $l_mod = new Landlord_Model();
                         </div>
 
                         <div class="form-group">
-                        <label for="period">Start Date</label>                        
+                        <label for="period">Start Date</label>
                         <div class="input-group date" data-provide="datepicker">
                             <input type="text" class="form-control startDate" name="startDate" placeholder="Start Date">
                             <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
@@ -169,7 +169,7 @@ $l_mod = new Landlord_Model();
                         </div>
 
                         <div class="form-group">
-                        <label for="period">End Date</label>                        
+                        <label for="period">End Date</label>
                         <div class="input-group date" data-provide="datepicker">
                             <input type="text" class="form-control endDate" name="endDate" placeholder="End Date">
                             <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
@@ -193,7 +193,7 @@ $l_mod = new Landlord_Model();
                         </div>
 
                         <div class="form-group">
-                        <label for="period">Rental Date</label>                        
+                        <label for="period">Rental Date</label>
                         <div class="input-group date" data-provide="datepicker">
                             <input type="text" class="form-control rentalDate" name="rentalDate" placeholder="Rental Date">
                             <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>

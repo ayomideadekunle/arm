@@ -15,7 +15,7 @@ $profile_data = $this->tenant_info;
 
             <form role="form" method="post" class="change_password">
                  <!--method="post" action="<?php echo URL; ?>landlord/change_pwd"-->
-                <div class="box-body">
+                 <div class="box-body">
 
                     <div class="form-group">
                         <label for="prvpassword">Existing Password</label>
@@ -52,7 +52,7 @@ $profile_data = $this->tenant_info;
                 oldpassword: $(".prvpassword").val(),
                 password: $(".newpassword").val()
             }
-            $.post("http://arm/landlord/change_pwd", data, function (response) {
+            $.post("http://localhost/apartment-rental-mgt/landlord/change_pwd", data, function (response) {
                 console.log(response)
             });
             return false;

@@ -21,11 +21,11 @@
 
         <script>
             function logout() {
-                location = "http://arm/login/logout";
+                location = "http://localhost/apartment-rental-mgt/login/logout";
             }
 
             function showProfile() {
-                location = "http://arm/landlord/tenantProfile";
+                location = "http://localhost/apartment-rental-mgt/landlord/tenantProfile";
             }
         </script>
     </head>

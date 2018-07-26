@@ -63,7 +63,7 @@ class Database extends PDO {
         $ope = implode("`,`", $key);
         $yemi = "`" . $ope . "`";
         $ola = implode(",:", $key);
-        $mide = ":" . $ola;
+      $mide = ":" . $ola;
         //echo $mide;
         $wuraola = "insert into $table ($yemi) values($mide)";
 //   echo $wuraola;

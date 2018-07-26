@@ -9,7 +9,7 @@
             e.preventDefault();
             var id = $(this).val();
             // console.log(id);
-            $.get("http://arm/landlord/fetchApartments/" + id, function (response) {
+            $.get("http://localhost/apartment-rental-mgt/landlord/fetchApartments/" + id, function (response) {
                 var apartmentNumber = $(".apartmentNumber");
                 var availabileText = $(".availability");
                 apartmentNumber.empty();
@@ -31,7 +31,7 @@
             e.preventDefault();
             var userid = $(this).val();
             // console.log(userid);
-            $.get("http://arm/landlord/tenantExists/" + userid, function (result) {
+            $.get("http://localhost/apartment-rental-mgt/landlord/tenantExists/" + userid, function (result) {
                 // console.log(result);
                 var currentTenant = $("#tenant_id").val();
                 $.each(JSON.parse(result), function (result, value) {
@@ -46,7 +46,7 @@
         })
     });
     function edit_Lease(id) {
-        $.get("http://arm/landlord/leaseContractEditPage/" + id, function (resp) {
+        $.get("http://localhost/apartment-rental-mgt/landlord/leaseContractEditPage/" + id, function (resp) {
             $("#loadEditPage").html(resp);
             $('#edit_lease').modal('show');
 //            console.log("Worked");
@@ -56,7 +56,7 @@
     function populate(){
         var id = $(".building_id").val();
             // console.log(id);
-            $.get("http://arm/landlord/fetchApartments/" + id, function (response) {
+            $.get("http://localhost/apartment-rental-mgt/landlord/fetchApartments/" + id, function (response) {
                 var apartmentNumber = $(".apartmentNumber");
                 var availabileText = $(".availability");
                 apartmentNumber.empty();
@@ -76,10 +76,10 @@
     function delete_Lease(id) {
         $("#delete_lease").modal('show');
         $(".delete").click(function () {
-            $.get("http://arm/landlord/deleteLease/" + id, function (resp) {
+            $.get("http://localhost/apartment-rental-mgt/landlord/deleteLease/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_lease").modal('hide');
-                location = "http://arm/landlord/leaseContracts";
+                location = "http://localhost/apartment-rental-mgt/landlord/leaseContracts";
             });
         });
         $(".cancel").click(function () {
@@ -103,11 +103,11 @@
         // console.log(id);
         $.ajax({
                 type: 'POST',
-                url: "http://arm/landlord/editLeaseContract/" + id,
+                url: "http://localhost/apartment-rental-mgt/landlord/editLeaseContract/" + id,
                 data: postData,
                 success: function (data) {
                     // $("#edit_building").modal("hide");
-                    location = "http://arm/landlord/leaseContracts";
+                    location = "http://localhost/apartment-rental-mgt/landlord/leaseContracts";
                 },
                 error: function () {}
             });
@@ -119,14 +119,14 @@ $(function() {
 $(".process").submit(function (e) {
         // event.preventDefault();
         var postData = $(this).serialize();
-        var url = "http://arm/landlord/handleLeaseContract";
+        var url = "http://localhost/apartment-rental-mgt/landlord/handleLeaseContract";
 
         $.ajax({
             type: 'POST',
             url: url,
             data: postData,
             success: function (data) {
-                location = "http://arm/landlord/leaseContracts";
+                location = "http://localhost/apartment-rental-mgt/landlord/leaseContracts";
             },
             error: function () {}
         });

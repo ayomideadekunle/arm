@@ -78,10 +78,10 @@ $l_mod = new Landlord_Model();
     function deleteRecord(id) {
         $("#delete_record").modal('show');
         $(".delete").click(function () {
-            $.post("http://arm/landlord/deleteContract/" + id, function (resp) {
+            $.post("http://localhost/apartment-rental-mgt/landlord/deleteContract/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_record").modal('hide');
-                location = "http://arm/landlord/terminatedContracts";
+                location = "http://localhost/apartment-rental-mgt/landlord/terminatedContracts";
 //                window.reload;
             });
         });

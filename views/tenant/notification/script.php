@@ -10,7 +10,7 @@
 
         // console.log(messageObject);
 
-        $.get("http://arm/tenant/loadMessage/" + id, function(response){
+        $.get("http://localhost/apartment-rental-mgt/tenant/loadMessage/" + id, function(response){
         //   console.log(response);
           $.each(JSON.parse(response), function (response, value) {
               var result = {

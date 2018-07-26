@@ -1,6 +1,6 @@
 <script>
     function edit_Apartment(id) {
-        $.get("http://arm/landlord/apartmentEditPage/" + id, function (resp) {
+        $.get("http://localhost/apartment-rental-mgt/landlord/apartmentEditPage/" + id, function (resp) {
             $("#loadEditPage").html(resp);
             $('#edit_apartment').modal('show');
 //            console.log("Worked");
@@ -10,10 +10,10 @@
     function delete_Apartment(id) {
         $("#delete_apartment").modal('show');
         $(".delete").click(function () {
-            $.get("http://arm/landlord/deleteapartment/" + id, function (resp) {
+            $.get("http://localhost/apartment-rental-mgt/landlord/deleteapartment/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_apartment").modal('hide');
-                location = "http://arm/landlord/apartments";
+                location = "http://localhost/apartment-rental-mgt/landlord/apartments";
             });
         });
         $(".cancel").click(function () {
@@ -34,11 +34,11 @@
         // console.log(id);
         $.ajax({
                 type: 'POST',
-                url: "http://arm/landlord/editApartment/" + id,
+                url: "http://localhost/apartment-rental-mgt/landlord/editApartment/" + id,
                 data: postData,
                 success: function (data) {
                     // $("#edit_apartment").modal("hide");
-                    location = "http://arm/landlord/apartments";
+                    location = "http://localhost/apartment-rental-mgt/landlord/apartments";
                 },
                 error: function () {}
             });
@@ -48,7 +48,7 @@
         $(".apartmentForm").submit(function (e) {
             // event.preventDefault();
             var postData = $(this).serialize();
-            var url = "http://arm/landlord/handleCreateApartment";
+            var url = "http://localhost/apartment-rental-mgt/landlord/handleCreateApartment";
 
             $.ajax({
                 type: 'POST',
@@ -56,7 +56,7 @@
                 data: postData,
                 success: function (data) {
                     // $("#new_apartment").modal("hide");
-                    location = "http://arm/landlord/apartments";
+                    location = "http://localhost/apartment-rental-mgt/landlord/apartments";
                 },
                 error: function () {}
             });

@@ -1,6 +1,6 @@
 <script>
     function edit_Building(id) {
-        $.get("http://arm/landlord/buildingEditPage/" + id, function (resp) {
+        $.get("http://localhost/apartment-rental-mgt/landlord/buildingEditPage/" + id, function (resp) {
             $("#loadEditPage").html(resp);
             $('#edit_building').modal('show');
 //            console.log("Worked");
@@ -10,10 +10,10 @@
     function delete_Building(id) {
         $("#delete_building").modal('show');
         $(".delete").click(function () {
-            $.get("http://arm/landlord/deleteBuilding/" + id, function (resp) {
+            $.get("http://localhost/apartment-rental-mgt/landlord/deleteBuilding/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_building").modal('hide');
-                location = "http://arm/landlord/buildings";
+                location = "http://localhost/apartment-rental-mgt/landlord/buildings";
 //                window.reload;
             });
         });
@@ -32,11 +32,11 @@
         // console.log(id);
         $.ajax({
                 type: 'POST',
-                url: "http://arm/landlord/editBuiding/" + id,
+                url: "http://localhost/apartment-rental-mgt/landlord/editBuiding/" + id,
                 data: postData,
                 success: function (data) {
                     // $("#edit_building").modal("hide");
-                    location = "http://arm/landlord/buildings";
+                    location = "http://localhost/apartment-rental-mgt/landlord/buildings";
                 },
                 error: function () {}
             });
@@ -46,7 +46,7 @@ $(function(){
     $(".process").submit(function (e) {
         // event.preventDefault();
         var postData = $(this).serialize();
-        var url = "http://arm/landlord/handleCreateBuilding";
+        var url = "http://localhost/apartment-rental-mgt/landlord/handleCreateBuilding";
 
         $.ajax({
             type: 'POST',
@@ -54,7 +54,7 @@ $(function(){
             data: postData,
             success: function (data) {
                 // $("#new_building").modal("hide");
-                location = "http://arm/landlord/buildings";
+                location = "http://localhost/apartment-rental-mgt/landlord/buildings";
             },
             error: function () {}
         });

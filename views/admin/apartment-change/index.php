@@ -106,10 +106,10 @@ $l_mod = new Landlord_Model();
     function reject_Request(id) {
         $("#reject").modal('show');
         $(".delete").click(function () {
-            $.post("http://arm/landlord/reject/" + id, function (resp) {
+            $.post("http://localhost/apartment-rental-mgt/landlord/reject/" + id, function (resp) {
                 alert("Rejected");
                 $("#delete_request").modal('hide');
-                location = "http://arm/landlord/apartment_change_requests";
+                location = "http://localhost/apartment-rental-mgt/landlord/apartment_change_requests";
 //                window.reload;
             });
         });
@@ -120,10 +120,10 @@ $l_mod = new Landlord_Model();
     }
 
     function grant_Request(id){
-        $.post("http://arm/landlord/grant/" + id, function (resp) {
+        $.post("http://localhost/apartment-rental-mgt/landlord/grant/" + id, function (resp) {
                 alert("Granted");
                 console.log(resp);
-                location = "http://arm/landlord/apartment_change_requests";
+                location = "http://localhost/apartment-rental-mgt/landlord/apartment_change_requests";
 //                window.reload;
             });
     }

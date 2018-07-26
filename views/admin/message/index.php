@@ -44,7 +44,7 @@
         $(".process").submit(function (e) {
             // e.preventDefault();
 
-            var url = "http://arm/landlord/notify";
+            var url = "http://localhost/apartment-rental-mgt/landlord/notify";
             var messageData = {
                 recipients: $(".select2").val(),
                 subject: $(".subject").val(),

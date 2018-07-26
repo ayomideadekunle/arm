@@ -64,7 +64,7 @@ foreach ($edit_data as $value) {
                     <input type="text" class="form-control" name="endDate" placeholder="End Date" data-date="<?php echo $value['endDate'] ?>">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
                     </div>
-                </div>
+                  </div>
             </div>
 
             <div class="form-group">

@@ -19,7 +19,7 @@ class Login extends Controller {
         Session::init();
         @session_destroy();
 //        echo 'logged out';
-        header("Location: http://arm/");
+        header("Location: http://localhost/apartment-rental-mgt/");
     }
 
 }

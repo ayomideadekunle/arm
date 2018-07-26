@@ -89,10 +89,10 @@ $l_mod = new Landlord_Model();
     function delete_Request(id) {
         $("#delete_request").modal('show');
         $(".delete").click(function () {
-            $.get("http://arm/landlord/deleteRequest/" + id, function (resp) {
+            $.get("http://localhost/apartment-rental-mgt/landlord/deleteRequest/" + id, function (resp) {
                 alert("Deleted");
                 $("#delete_request").modal('hide');
-                location = "http://arm/landlord/maintenancerequests";
+                location = "http://localhost/apartment-rental-mgt/landlord/maintenancerequests";
 //                window.reload;
             });
         });

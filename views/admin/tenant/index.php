@@ -83,7 +83,7 @@
                         <div class="form-group">
                             <label for="lastname">Last Name</label>
                             <input type="text" class="form-control" placeholder="Enter Last Name" name="lastname">
-                        </div>
+                          </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -112,7 +112,7 @@
 
                         <div class="form-group">
                             <label for="password">Confirm Password</label>
-                            <input type="password" class="form-control" id="cfpass" 
+                            <input type="password" class="form-control" id="cfpass"
                                    placeholder="Confirm password">
                         </div>
 

@@ -65,7 +65,7 @@
 
                     if ($.trim(username).length > 0 && $.trim(password).length > 0) {
                         $.ajax({
-                            url: "http://arm/login/loginUser/",
+                            url: "http://localhost/apartment-rental-mgt/login/loginUser/",
                             method: "POST",
                             data: {email: username, password: password},
                             cache: false,

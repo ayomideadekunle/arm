@@ -112,7 +112,7 @@
             var request_cat = $(".request_category").val();
             if(request_cat === "Change Apartment"){
                 
-                var url = "http://arm/tenant/handleChngAptRequest";
+                var url = "http://localhost/apartment-rental-mgt/tenant/handleChngAptRequest";
                 var newApt = $(".newApartment").val();
                 var move_in_date = $(".changeDate").val();
 
@@ -129,7 +129,7 @@
             });
             } else if(request_cat === "Terminate Lease"){
                 
-                var url = "http://arm/tenant/handleContractTermination"
+                var url = "http://localhost/apartment-rental-mgt/tenant/handleContractTermination"
                 var date = $(".leavingDate").val();
                 var reason = $(".leavingReason").val();
 
@@ -145,7 +145,7 @@
                 }
             });
             } else if(request_cat === "Maintenance"){
-                var url = "http://arm/tenant/handleMaintenanceRequest"
+                var url = "http://localhost/apartment-rental-mgt/tenant/handleMaintenanceRequest"
                 var category = $(".category_id").val();
                 var request = $(".request").val();
 
@@ -172,7 +172,7 @@
             e.preventDefault();
             var apartmentid = $(this).val();
             // console.log(userid);
-            $.get("http://arm/tenant/checkApartment/" + apartmentid, function (result) {
+            $.get("http://localhost/apartment-rental-mgt/tenant/checkApartment/" + apartmentid, function (result) {
                 // console.log(result);
                 var currentApartment = $("#apt_id").val();
                 $.each(JSON.parse(result), function (result, value) {
