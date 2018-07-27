@@ -70,7 +70,7 @@
                             data: {email: username, password: password},
                             cache: false,
                             success: function (data) {
-                                window.location = "http://arm";
+                                window.location = "http://apartment-rental-mgt";
                             },
                             error: function () {}
                         });
