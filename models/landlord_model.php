@@ -193,12 +193,12 @@ class Landlord_Model extends Model
 
     public function mail_sending_template()
     {
-        $sender_address = 'mwaliyayomide@gmail.com';
-        $sender_name = "Raji Waliyu Adekunle";
-        $recipient = "holhusheun@gmail.com";
-        $recipient_name = "Omotunde John";
-        $subject = 'First PHPMailer Message';
-        $body = 'Hi! This is my first e-mail sent through PHPMailer.';
+        $sender_address = $_POST['sender_email'];
+        $sender_name = $_POST['sender_name'];
+        $recipient = $_POST['recipient_email'];
+        $recipient_name = $_POST['recipient_name'];
+        $subject = $_POST['subject'];
+        $body = $_POST['message'];
 
         $sendmail = new PHPMailer;
         $sendmail->setFrom($sender_address, $sender_name);

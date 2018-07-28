@@ -46,21 +46,38 @@
 
     $(function(){
         $(".apartmentForm").submit(function (e) {
-            // event.preventDefault();
-            var postData = $(this).serialize();
-            var url = "http://localhost/apartment-rental-mgt/landlord/handleCreateApartment";
+          var postData = $(this).serialize();
+          var url = "http://localhost/apartment-rental-mgt/landlord/handleCreateApartment";
+          var valid = true,
+          message = '';
 
-            $.ajax({
-                type: 'POST',
-                url: url,
-                data: postData,
-                success: function (data) {
-                    // $("#new_apartment").modal("hide");
-                    location = "http://localhost/apartment-rental-mgt/landlord/apartments";
-                },
-                error: function () {}
-            });
-            return false;
+          $('form input').each(function() {
+            var $this = $(this);
+
+            if(!$this.val()) {
+              var inputName = $this.attr('name');
+                valid = false;
+                message += 'Please enter your ' + inputName + '\n';
+              }
+});
+
+  if(!valid) {
+    alert(message);
+  } else {
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: postData,
+                    success: function (data) {
+                        // $("#new_apartment").modal("hide");
+                        location = "http://localhost/apartment-rental-mgt/landlord/apartments";
+                    },
+                    error: function () {}
+                });
+  }
+            // event.preventDefault();
+
+            // return false;
         });
     });
 </script>
