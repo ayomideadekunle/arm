@@ -63,6 +63,7 @@
 
   if(!valid) {
     alert(message);
+    return false;
   } else {
                 $.ajax({
                     type: 'POST',
