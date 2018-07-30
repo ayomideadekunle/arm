@@ -23,6 +23,24 @@
         var postData = $(this).serialize();
         var url = "http://localhost/apartment-rental-mgt/landlord/handleCreateTenant";
 
+        var valid = true,
+        message = '';
+
+        $('form input').each(function() {
+          var $this = $(this);
+
+          if(!$this.val()) {
+            var inputName = $this.attr('name');
+              valid = false;
+              message += 'Please enter your ' + inputName + '\n';
+            }
+});
+
+if(!valid) {
+  alert(message);
+  return false;
+} else {
+
         $.ajax({
             type: 'POST',
             url: url,
@@ -32,7 +50,8 @@
             },
             error: function () {}
         });
-            return false;
+            // return false;
+          }
         });
     });
 
@@ -69,7 +88,7 @@
         })
     }
 
-    function editTenant(id){
+    function editTenant(id, event){
         var postData = {
             firstname: $(".firstname").val(),
             lastname: $(".lastname").val(),
@@ -78,6 +97,25 @@
             currentAddress: $(".currentAddress").val(),
             email: $(".email").val()
         }
+
+        var valid = true,
+        message = '';
+
+        $('.editSecRefund input').each(function() {
+          var $this = $(this);
+
+          if(!$this.val()) {
+            var inputName = $this.attr('name');
+              valid = false;
+              message += 'Please enter your ' + inputName + '\n';
+            }
+});
+
+if(!valid) {
+  alert(message);
+  // return false;
+  event.preventDefault();
+} else {
 
         $.ajax({
                 type: 'POST',
@@ -88,5 +126,6 @@
                 },
                 error: function () {}
             });
+          }
     }
 </script>

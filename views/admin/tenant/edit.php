@@ -5,7 +5,7 @@ $edit_data = $this->tenantData;
 foreach ($edit_data as $value) {
     ?>
 
-    <form role="form" method="post">
+    <form role="form" method="post" class="editTenant">
         <div class="box-body">
 
             <div class="form-group">
@@ -41,7 +41,7 @@ foreach ($edit_data as $value) {
         </div><!-- /.box-body -->
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary" onclick="editTenant(<?php echo $value['id'];?>);">Submit</button>
+            <button type="submit" class="btn btn-primary" onclick="editTenant(<?php echo $value['id'];?>, event);">Submit</button>
         </div>
     </form>
 

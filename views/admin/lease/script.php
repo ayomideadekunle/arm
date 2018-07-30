@@ -87,7 +87,7 @@
         })
     }
 
-    function editLease(id){
+    function editLease(id, event){
         var postData = {
             tenant_id: $(".tenant_id").val(),
             building_id: $(".building_id").val(),
@@ -99,8 +99,25 @@
             period: $(".period").val(),
             rentalDate: $(".rentalDate").val()
         }
-        // console.log(postData);
-        // console.log(id);
+
+        var valid = true,
+        message = '';
+
+        $('.editLease input').each(function() {
+          var $this = $(this);
+
+          if(!$this.val()) {
+            var inputName = $this.attr('name');
+              valid = false;
+              message += 'Please enter your ' + inputName + '\n';
+            }
+});
+
+if(!valid) {
+  alert(message);
+  // return false;
+  event.preventDefault();
+} else {
         $.ajax({
                 type: 'POST',
                 url: "http://localhost/apartment-rental-mgt/landlord/editLeaseContract/" + id,
@@ -112,6 +129,7 @@
                 error: function () {}
             });
     }
+  }
 
 $(function() {
     // $('.datepick').daterangepicker();
@@ -120,6 +138,24 @@ $(".process").submit(function (e) {
         // event.preventDefault();
         var postData = $(this).serialize();
         var url = "http://localhost/apartment-rental-mgt/landlord/handleLeaseContract";
+
+        var valid = true,
+        message = '';
+
+        $('form input').each(function() {
+          var $this = $(this);
+
+          if(!$this.val()) {
+            var inputName = $this.attr('name');
+              valid = false;
+              message += 'Please enter your ' + inputName + '\n';
+            }
+});
+
+if(!valid) {
+  alert(message);
+  return false;
+} else {
 
         $.ajax({
             type: 'POST',
@@ -130,7 +166,8 @@ $(".process").submit(function (e) {
             },
             error: function () {}
         });
-        return false;
+        // return false;
+      }
     });
 });
 </script>

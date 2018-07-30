@@ -28,8 +28,25 @@
             address: $(".address").val(),
             cityStateZip: $(".cityStateZip").val()
         }
-        // console.log(postData);
-        // console.log(id);
+
+        var valid = true,
+        message = '';
+
+        $('.editBuiding input').each(function() {
+          var $this = $(this);
+
+          if(!$this.val()) {
+            var inputName = $this.attr('name');
+              valid = false;
+              message += 'Please enter your ' + inputName + '\n';
+            }
+});
+
+if(!valid) {
+  alert(message);
+  // return false;
+  event.preventDefault();
+} else {
         $.ajax({
                 type: 'POST',
                 url: "http://localhost/apartment-rental-mgt/landlord/editBuiding/" + id,
@@ -41,6 +58,7 @@
                 error: function () {}
             });
     }
+  }
 
 $(function(){
     $(".process").submit(function (e) {
@@ -48,6 +66,23 @@ $(function(){
         var postData = $(this).serialize();
         var url = "http://localhost/apartment-rental-mgt/landlord/handleCreateBuilding";
 
+        var valid = true,
+        message = '';
+
+        $('form input').each(function() {
+          var $this = $(this);
+
+          if(!$this.val()) {
+            var inputName = $this.attr('name');
+              valid = false;
+              message += 'Please enter your ' + inputName + '\n';
+            }
+});
+
+if(!valid) {
+  alert(message);
+  return false;
+} else {
         $.ajax({
             type: 'POST',
             url: url,
@@ -58,7 +93,8 @@ $(function(){
             },
             error: function () {}
         });
-            return false;
+            // return false;
+          }
         });
     });
 </script>
