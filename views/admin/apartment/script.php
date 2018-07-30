@@ -21,7 +21,7 @@
         })
     }
 
-    function editApartment(id){
+    function editApartment(id, event){
         var postData = {
             building_id: $(".building_id").val(),
             apartmentType: $(".apartmentType").val(),
@@ -30,8 +30,25 @@
             size: $(".size").val(),
             status: $(".status").val()
         }
-        // console.log(postData);
-        // console.log(id);
+
+        var valid = true,
+        message = '';
+
+        $('.editApartment input').each(function() {
+          var $this = $(this);
+
+          if(!$this.val()) {
+            var inputName = $this.attr('name');
+              valid = false;
+              message += 'Please enter your ' + inputName + '\n';
+            }
+});
+
+if(!valid) {
+  alert(message);
+  // return false;
+  event.preventDefault();
+} else {
         $.ajax({
                 type: 'POST',
                 url: "http://localhost/apartment-rental-mgt/landlord/editApartment/" + id,
@@ -43,6 +60,7 @@
                 error: function () {}
             });
     }
+  }
 
     $(function(){
         $(".apartmentForm").submit(function (e) {

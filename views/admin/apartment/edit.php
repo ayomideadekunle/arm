@@ -67,7 +67,7 @@ foreach ($edit_data as $value) {
         </div><!-- /.box-body -->
 
         <div class="box-footer">
-            <button type="submit" class="btn btn-primary"  onclick="editApartment(<?php echo $value['id']; ?>)">Submit</button>
+            <button type="submit" class="btn btn-primary"  onclick="editApartment(<?php echo $value['id']; ?>, event)">Submit</button>
         </div>
     </form>
 <?php } ?>
