@@ -111,7 +111,7 @@
         $(".process").submit(function () {
             var request_cat = $(".request_category").val();
             if(request_cat === "Change Apartment"){
-                
+
                 var url = "http://localhost/apartment-rental-mgt/tenant/handleChngAptRequest";
                 var newApt = $(".newApartment").val();
                 var move_in_date = $(".changeDate").val();
@@ -128,7 +128,7 @@
                 }
             });
             } else if(request_cat === "Terminate Lease"){
-                
+
                 var url = "http://localhost/apartment-rental-mgt/tenant/handleContractTermination"
                 var date = $(".leavingDate").val();
                 var reason = $(".leavingReason").val();
@@ -161,7 +161,7 @@
                 }
             });
             } else {
-                alert("Please select request type");                
+                alert("Please select request type");
             }
             // console.log(request_cat);
 

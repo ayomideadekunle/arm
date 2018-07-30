@@ -101,7 +101,7 @@ if(!valid) {
         var valid = true,
         message = '';
 
-        $('.editSecRefund input').each(function() {
+        $('.editTenant input').each(function() {
           var $this = $(this);
 
           if(!$this.val()) {
