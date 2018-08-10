@@ -34,57 +34,57 @@ $l_mod = new Landlord_Model();
                         </thead>
                         <tbody>
                             <?php
-                            $count = 1;
-                            $contracts = $this->leaseContracts;
-                            foreach ($contracts as $contract) {
-                                ?>
+$count = 1;
+$contracts = $this->leaseContracts;
+foreach ($contracts as $contract) {
+    ?>
                                 <tr>
                                     <td><?php echo $count; ?></td>
                                     <?php
-                                    $tenant_infos = $l_mod->tenantInfo($contract['tenant_id']);
-                                    foreach ($tenant_infos as $tenant) {
-                                        ?>
+$tenant_infos = $l_mod->tenantInfo($contract['tenant_id']);
+    foreach ($tenant_infos as $tenant) {
+        ?>
                                         <td><?php
-                                            echo $tenant['firstname'];
-                                            echo ' ';
-                                            echo $tenant['lastname'];
-                                            ?> </td>
-                                    <?php } ?>
+echo $tenant['firstname'];
+        echo ' ';
+        echo $tenant['lastname'];
+        ?> </td>
+                                    <?php }?>
                                     <?php
-                                    $building_infos = $l_mod->buildingInfo($contract['building_id']);
-                                    foreach ($building_infos as $building) {
-                                        ?>
+$building_infos = $l_mod->buildingInfo($contract['building_id']);
+    foreach ($building_infos as $building) {
+        ?>
                                         <td><?php
-                                            echo $building['buildingName'];
-                                            ?>
+echo $building['buildingName'];
+        ?>
                                         </td>
-                                    <?php } ?>
+                                    <?php }?>
                                     <?php
-                                    $apartment_infos = $l_mod->apartmentInfo($contract['apartment_id']);
-                                    foreach ($apartment_infos as $apartment) {
-                                        ?>
+$apartment_infos = $l_mod->apartmentInfo($contract['apartment_id']);
+    foreach ($apartment_infos as $apartment) {
+        ?>
                                         <td><?php echo $apartment['apartmentNumber']; ?> </td>
-                                    <?php } ?>
+                                    <?php }?>
                                     <td><?php echo $contract['startDate']; ?> </td>
                                     <td><?php echo $contract['endDate']; ?></td>
                                     <td><?php echo $contract['balance']; ?></td>
                                     <td><?php echo $contract['securityDeposit']; ?></td>
                                     <td><?php echo $contract['period']; ?></td>
                                     <td><?php echo $contract['rentalDate']; ?></td>
-                                    <td><?php if($contract['status'] == 0){
-                                    echo "Valid";
-                                    } else {
-                                        echo "Terminated";
-                                    }
-                                    ?></td>
+                                    <td><?php if ($contract['status'] == 0) {
+        echo "Valid";
+    } else {
+        echo "Terminated";
+    }
+    ?></td>
                                     <td>
                                         <button onclick="edit_Lease('<?php echo $contract['id']; ?>');" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
                                         <button onclick="delete_Lease('<?php echo $contract['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
-                                <?php $count++; ?>
+                                <?php $count++;?>
                             <?php }
-                            ?>
+?>
                         </tbody>
                     </table>
                 </div><!-- /.box-body -->
@@ -119,17 +119,17 @@ $l_mod = new Landlord_Model();
                             <select class="form-control checkIfExists" name="tenant_id">
                                 <option selected>Select User</option>
                                 <?php
-                                $tenants = $this->tenants;
-                                foreach ($tenants as $tenant) {
-                                    ?>
+$tenants = $this->tenants;
+foreach ($tenants as $tenant) {
+    ?>
                                     <option value="<?php echo $tenant['id']; ?>" id="tenant_id">
                                         <?php
-                                        echo $tenant['firstname'];
-                                        echo ' ';
-                                        echo $tenant['lastname'];
-                                        ?>
+echo $tenant['firstname'];
+    echo ' ';
+    echo $tenant['lastname'];
+    ?>
                                     </option>
-                                <?php } ?>
+                                <?php }?>
                             </select>
                         </div>
 
@@ -138,13 +138,13 @@ $l_mod = new Landlord_Model();
                             <select class="form-control buildingsSelect" name="building_id">
                                 <option selected>Select Building</option>
                                 <?php
-                                $buildings = $this->buildings;
-                                foreach ($buildings as $value) {
-                                    ?>
+$buildings = $this->buildings;
+foreach ($buildings as $value) {
+    ?>
                                     <option value="<?php echo $value['id']; ?>">
                                         <?php echo $value['buildingName']; ?>
                                     </option>
-                                <?php } ?>
+                                <?php }?>
                             </select>
                         </div>
 
@@ -161,20 +161,16 @@ $l_mod = new Landlord_Model();
 
                         <div class="form-group">
                         <label for="period">Start Date</label>
-                        <div class="input-group date" data-provide="datepicker">
-                            <input type="text" class="form-control startDate" name="startDate" placeholder="Start Date">
-                            <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
-                            </div>
-                        </div>
+                            <input type="date" class="form-control startDate" name="startDate" placeholder="Start Date">
                         </div>
 
                         <div class="form-group">
                         <label for="period">End Date</label>
-                        <div class="input-group date" data-provide="datepicker">
-                            <input type="text" class="form-control endDate" name="endDate" placeholder="End Date">
-                            <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
+                        <!-- <div class="input-group date" data-provide="datepicker"> -->
+                            <input type="date" class="form-control endDate" name="endDate" placeholder="End Date">
+                            <!-- <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
                             </div>
-                        </div>
+                        </div> -->
                         </div>
 
                         <div class="form-group">
@@ -194,11 +190,11 @@ $l_mod = new Landlord_Model();
 
                         <div class="form-group">
                         <label for="period">Rental Date</label>
-                        <div class="input-group date" data-provide="datepicker">
-                            <input type="text" class="form-control rentalDate" name="rentalDate" placeholder="Rental Date">
-                            <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
+                        <!-- <div class="input-group date" data-provide="datepicker"> -->
+                            <input type="date" class="form-control rentalDate" name="rentalDate" placeholder="Rental Date">
+                            <!-- <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
                             </div>
-                        </div>
+                        </div> -->
                         </div>
 
                     </div><!-- /.box-body -->

@@ -27,13 +27,12 @@ foreach ($edit_data as $value) {
             <div class="form-group">
                 <label>Building</label>
                 <select class="form-control buildingsSelect building_id" name="building_id" id="buildingsSelect" onchange="populate();">
-                <option selected>Select Building</option>
+                <!-- <option selected>Select Building</option> -->
                     <?php
                     $buildings = $this->buildings;
                     foreach ($buildings as $building) {
                         ?>
-                         <!-- <?php if ($building['id'] == $value['building_id']) echo 'selected'; ?> -->
-                        <option value="<?php echo $building['id']; ?>">
+                        <option value="<?php echo $building['id']; ?>" <?php if ($building['id'] == $value['building_id']) echo 'selected'; ?>>
                             <?php echo $building['buildingName']; ?>
                         </option>
                     <?php } ?>
@@ -44,27 +43,35 @@ foreach ($edit_data as $value) {
                 <label>Apartments</label>
                 <select class="form-control apartmentNumber" name="apartment_id">
                     <!-- <option selected>Select Apartment</option> -->
+                    <?php
+                    $apartments = $this->apartments;
+                    foreach ($apartments as $apartment) {
+                        ?>
+                        <option value="<?php echo $apartment['id']; ?>" <?php if ($apartment['id'] == $value['apartment_id']) echo 'selected'; ?>>
+                            <?php echo $apartment['apartmentNumber'] ." ". $apartment['apartmentType']; ?>
+                        </option>
+                    <?php } ?>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="startDate">Start Date</label>
-                <!-- <input type="date" class="form-control startDate" placeholder="Enter Start Date" name="startDate" > -->
-                <div class="input-group date" data-provide="datepicker">
+                <input type="date" class="form-control startDate" placeholder="Enter Start Date" name="startDate" value="<?php echo $value['startDate'] ?>">
+                <!-- <div class="input-group date" data-provide="datepicker">
                     <input type="text" class="form-control" name="startDate" placeholder="Start Date" value="<?php echo $value['startDate'] ?>">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="form-group">
                 <label for="endDate">End Date</label>
-                <!-- <input type="date" class="form-control" placeholder="Enter End Date" name="endDate" value="<?php echo $value['endDate'] ?>"> -->
-                <div class="input-group date" data-provide="datepicker">
+                <input type="date" class="form-control" placeholder="Enter End Date" name="endDate" value="<?php echo $value['endDate'] ?>">
+                <!-- <div class="input-group date" data-provide="datepicker">
                     <input type="text" class="form-control" name="endDate" placeholder="End Date" data-date="<?php echo $value['endDate'] ?>">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
                     </div>
-                  </div>
+                  </div> -->
             </div>
 
             <div class="form-group">
@@ -84,12 +91,12 @@ foreach ($edit_data as $value) {
 
             <div class="form-group">
                 <label for="rentalDate">Rental Date</label>
-                <!-- <input type="text" class="form-control rentalDate" placeholder="Enter Rental Date" name="rentalDate" value="<?php echo $value['rentalDate'] ?>"> -->
-                <div class="input-group date" data-provide="datepicker">
+                <input type="text" class="form-control rentalDate" placeholder="Enter Rental Date" name="rentalDate" value="<?php echo $value['rentalDate'] ?>">
+                <!-- <div class="input-group date" data-provide="datepicker">
                     <input type="text" class="form-control" name="rentalDate" placeholder="Rental Date" value="<?php echo $value['rentalDate'] ?>">
                         <div class="input-group-addon"><span class="glyphicon glyphicon-th"></span>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div><!-- /.box-body -->

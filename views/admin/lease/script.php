@@ -133,11 +133,11 @@ if(!valid) {
 
 $(function() {
     // $('.datepick').daterangepicker();
-    $('.datepicker').datepicker();
+    // $('.datepicker').datepicker();
 $(".process").submit(function (e) {
         // event.preventDefault();
         var postData = $(this).serialize();
-        var url = "http://localhost/apartment-rental-mgt/landlord/handleLeaseContract";
+        var url = "http://localhost/apartment-rental-mgt/landlord/handleLeaseContracts";
 
         var valid = true,
         message = '';
