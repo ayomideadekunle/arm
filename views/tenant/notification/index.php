@@ -1,72 +1,80 @@
+<?php
+$notifications = $this->notifications;
+?>
 
-<section class="content-header">
-          <h1>
-            Read Mail
-          </h1>
-        </section>
+<section class="content">
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">Messages</h3>
+    </div>
 
-        <!-- Main content -->
-        <section class="content">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="box box-solid">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Folders</h3>
-                  <div class="box-tools">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                  </div>
-                </div>
-                <div class="box-body no-padding">
-                  <ul class="nav nav-pills nav-stacked">
-                    <li><a href=""><i class="fa fa-inbox"></i> Inbox <span class="label label-primary pull-right"><?php echo count($this->notifications);?></span></a></li>
-                  </ul>
+<div class="box-body">
+        <table class="table table-bordered table-striped" id="data_table">
+          <thead>
+            <tr>
+                <th>#</th>
+                <th>Sender</th>
+                <th>Subject</th>
+                <th>Message</th>
+                <th>Sent Date</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <?php
+                $count = 1;
+                foreach($notifications as $notification) { ?>
+                    <td><?php echo $count; ?></td>
+                    <td><?php echo $notification['sender']; ?> </td>
+                    <td><?php echo $notification['subject']; ?></td>
+                    <td><?php echo $notification['message']; ?></td>
+                    <td><?php echo $notification['date']; ?></td>
+                    <td>
+                    <button onclick="delete_Message('<?php echo $notification['id']; ?>');" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></button>
+                    </td>
+              </tr>
+              <?php $count++;?>
+                <?php } ?>                        
+                        </tbody>
+                    </table>
                 </div><!-- /.box-body -->
-              </div><!-- /. box -->
-            </div><!-- /.col -->
-            <div class="col-md-9">
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title"><i>Inbox</i></h3>
-                </div><!-- /.box-header -->
-                <div class="mailbox-controls">
-                    <!-- Check all button -->
-                    <button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
-                    <div class="btn-group">
-                      <button class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                    </div><!-- /.btn-group -->
-                    <button class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
-                    <div class="pull-right">
-                      1-50/200
-                      <div class="btn-group">
-                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
-                        <button class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
-                      </div><!-- /.btn-group -->
-                    </div><!-- /.pull-right -->
-                  </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                  <div class="table-responsive mailbox-messages">
-                    <table class="table table-hover table-striped">
-                      <tbody>
-                      <?php 
-                            $messages = $this->notifications;
-                              foreach ($messages as $message) {
-                                // print_r($messages);
-                          ?>
-                        <tr>
-                          <td><input type="checkbox"></td>
-                          <td class="mailbox-name"><a onclick="loadContent(<?php echo $message['id'] ?>)"><?php echo $message["sender"]; ?></a></td>
-                          <td class="mailbox-subject"><b><?php echo $message["subject"]; ?></b></td>
-                          <!-- <td class="mailbox-attachment"></td> -->
-                          <td class="mailbox-date">5 mins ago</td>
-                        </tr>
-                              <?php } ?>
-                      </tbody>
-                    </table><!-- /.table -->
-                  </div>
-                </div><!-- /.box-footer -->
-              </div><!-- /. box -->
-            </div><!-- /.col -->
-          </div><!-- /.row -->
-        </section><!-- /.content -->
 
-<?php require 'script.php'; ?>
+<div id="delete_message" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Message</h4>
+            </div>
+            <div class="modal-body">
+                <button class="btn btn-primary delete">Yes</button>
+                <button class="btn btn cancel">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function delete_Message(id) {
+        $("#delete_message").modal('show');
+        $(".delete").click(function () {
+            $.get("http://localhost/apartment-rental-mgt/tenant/deleteMsg/" + id, function (resp) {
+                alert("Deleted");
+                location = "http://localhost/apartment-rental-mgt/tenant/notifications";
+            });
+        });
+        $(".cancel").click(function () {
+            $("#delete_message").modal("hide");
+        })
+    }
+</script>

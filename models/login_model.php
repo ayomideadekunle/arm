@@ -37,9 +37,7 @@ class Login_Model extends Model {
 
         $val = $this->db->select("select * from admin");
         foreach ($val as $key => $value) {
-//            echo "connected";
             if ($username == $value['username'] && $password == $value['password']) {
-                $name = "1";
                 @session_start();
 
                 $_SESSION["id"] = $value["id"];
@@ -47,7 +45,7 @@ class Login_Model extends Model {
                 $_SESSION["role"] = $value["role"];
                 $_SESSION["username"] = $value["username"];
 
-                echo $name;
+                echo "connected";
                 return FALSE;
             }
         }

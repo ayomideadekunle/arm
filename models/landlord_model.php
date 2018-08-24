@@ -64,15 +64,6 @@ class Landlord_Model extends Model
         return $getinfo_query;
     }
 
-    public function tenantProfile()
-    {
-        global $DATABASE;
-
-        $id = $this->loggedInUser();
-        $query = $DATABASE->select("SELECT * FROM users WHERE id = " . $id);
-        return $query;
-    }
-
     public function grantRequest($id)
     {
         global $DATABASE;
@@ -108,11 +99,11 @@ class Landlord_Model extends Model
         // echo $update_lease_tbl;
         $grant_query = "update apartmentChange set status = 1 where id = '$id'";
 
-        // $DATABASE->startTransaction();
-        // $run_query = $DATABASE->select($grant_query);
-        // $DATABASE->select($update_lease_tbl);
-        // $DATABASE->insert("notification", $messageData);
-        // $DATABASE->commitTransaction();
+        $DATABASE->startTransaction();
+        $run_query = $DATABASE->select($grant_query);
+        $DATABASE->select($update_lease_tbl);
+        $DATABASE->insert("notification", $messageData);
+        $DATABASE->commitTransaction();
         // }
     }
 
@@ -176,6 +167,29 @@ class Landlord_Model extends Model
         global $DATABASE;
         $result = $DATABASE->select("select * from lease where tenant_id =" . $tenant_id);
         echo json_encode($result);
+    }
+
+    public function notifyOfRenewal($user_id)
+    {
+      global $DATABASE;
+      $query_lease = $this->db->select("select * from lease where id = " .$user_id);
+      $tenant_id = $query_lease[0]["tenant_id"];
+      // echo json_encode($query_lease);
+
+      $messageData = array(
+            'user' => $tenant_id,
+            'sender' => "waLkEr Apartment Management",
+            'message' => "Your contract will soon be renewed",
+            'subject' => "Renewal of Contract Notice",
+            'date' => date("Y-m-d H:i:s")
+          );
+
+        $query = "update lease set isnotified = 1 where tenant_id = " .$user_id;
+
+        $DATABASE->startTransaction();
+        $run_query = $DATABASE->select($query);
+        $DATABASE->insert("notification", $messageData);
+        $DATABASE->commitTransaction();
     }
 
 // Create Method
@@ -353,48 +367,6 @@ class Landlord_Model extends Model
             'cityStateZip' => $_POST['cityStateZip'],
         );
         $DATABASE->update("users", $tenantData, 'id=' . $tenant_id);
-    }
-
-    public function chngPassword()
-    {
-        global $DATABASE;
-
-        $response = false;
-
-        $oldpassword = md5($_POST['oldpassword']);
-
-        $newpassword = array(
-            'password' => md5($_POST['password']),
-        );
-        $userid = $this->loggedInUser();
-        $checkIfUserExists = $DATABASE->select("SELECT * FROM users "
-            . "WHERE id = " . $userid);
-
-        if ($checkIfUserExists[0]['password'] == $oldpassword) {
-//            echo 'Present';
-            $chngPwdQuery = $DATABASE->update('users', $newpassword, 'id =' . $userid);
-            $response = true;
-            return $chngPwdQuery;
-        } else {
-//            echo 'Incorrect password';
-            return $response;
-        }
-        // echo json_encode($checkIfUserExists);
-    }
-
-    public function checkPassword($password)
-    {
-        global $DATABASE;
-
-        // $response = true;
-
-        $userid = $this->loggedInUser();
-        $checkIfPasswordExists = $DATABASE->select("SELECT password FROM users WHERE id = " . $userid);
-        if ($checkIfPasswordExists[0]['password'] == md5($password)) {
-//           return response;
-            echo json_encode($checkIfPasswordExists);
-        }
-        // return false;
     }
 
     public function updateBuilding($building_id = '')

@@ -87,6 +87,16 @@
         })
     }
 
+    function notifyTenant(userid) {
+      // var user_id = $(".notify").attr("userid");
+      // console.log(user_id);
+      // console.log(userid);
+      $.post("http://localhost/apartment-rental-mgt/landlord/notifyUser/" + userid, function(response){
+        alert("User notified");
+        console.log(response);
+      });
+    }
+
     function editLease(id, event){
         var postData = {
             tenant_id: $(".tenant_id").val(),

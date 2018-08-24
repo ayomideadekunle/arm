@@ -25,7 +25,7 @@
             }
 
             function showProfile() {
-                location = "http://localhost/apartment-rental-mgt/landlord/tenantProfile";
+                location = "http://localhost/apartment-rental-mgt/tenant/tenantProfile";
             }
         </script>
     </head>
@@ -78,9 +78,9 @@
                                     <!-- Menu Footer-->
                                     <li class="user-footer">
                                         <div class="pull-left">
-                                        <?php 
+                                        <?php
                                             if($_SESSION["role"] == "tenant"){ ?>
-                                            <button class="btn btn-default btn-flat" onclick="showProfile();">Profile</button>                                                
+                                            <button class="btn btn-default btn-flat" onclick="showProfile();">Profile</button>
                                             <?php } ?>
                                         </div>
                                         <div class="pull-right">
@@ -103,23 +103,23 @@
                         <?php
                         if ($_SESSION['role'] == 'admin') {
                             ?>
-                            <li><a href=""><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/buildings"><i class="fa fa-building-o"></i> <span>Buildings</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/apartments"><i class="fa fa-building-o"></i> <span>Apartments</span></a></li>
-                            <li><a href="<?php echo URL; ?>landlord/leaseContracts"><i class="fa fa-list"></i> <span>Lease Contracts</span></a></li>                            
+                            <li><a href="<?php echo URL; ?>landlord/leaseContracts"><i class="fa fa-list"></i> <span>Lease Contracts</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/tenants"><i class="fa fa-users"></i> <span>Tenants</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/maintenancerequests"><i class="fa fa-list"></i> <span>Maintenance Requests</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/apartment_change_requests"><i class="fa fa-list"></i> <span>Change Apartment Request</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/sendMessage"><i class="fa fa-inbox"></i> <span>Send Message</span></a></li>
                             <!--<li><a href="<?php echo URL; ?>landlord/"><i class="fa fa-money"></i> <span>Payment</span></a></li>-->
-                            <li><a href="<?php echo URL; ?>landlord/terminatedContracts"><i class="fa fa-list"></i> <span>Terminated Contracts</span></a></li>
-                            <li><a href="<?php echo URL; ?>landlord/securityRefunds"><i class="fa fa-list"></i> <span>Security Refunds</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/terminatedContracts"><i class="fa fa-times"></i> <span>Terminated Contracts</span></a></li>
+                            <li><a href="<?php echo URL; ?>landlord/securityRefunds"><i class="fa fa-money"></i> <span>Security Refunds</span></a></li>
                             <li><a href="<?php echo URL; ?>landlord/maintenanceCategories"><i class="fa fa-list"></i> <span>Maintenance Categories</span></a></li>
                         <?php } elseif ($_SESSION['role'] == 'tenant') {
                             ?>
-                            <!-- <li><a href = "<?php echo URL; ?>tenant/requestmaintenance"><i class = "fa fa-plus-square"></i> <span>Request Maintenance</span></a></li> -->
-                            <li><a href = "<?php echo URL; ?>tenant/request"><i class = "fa fa-plus"></i> <span>Send Request</span></a></li>
-                            <li><a href = "<?php echo URL; ?>tenant/notifications"><i class = "fa fa-bell"></i> <span>Notifications</span></a></li>
+                            <li><a href="<?php echo URL; ?>tenant"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                            <li><a href="<?php echo URL; ?>tenant/request"><i class = "fa fa-plus"></i> <span>Send Request</span></a></li>
+                            <li><a href="<?php echo URL; ?>tenant/notifications"><i class = "fa fa-bell"></i> <span>Notifications</span></a></li>
                         <?php }
                         ?>
                     </ul>

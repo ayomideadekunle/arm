@@ -24,6 +24,11 @@
                         </select>
                     </div>
 
+                    <div class="form-group renewalPeriod" style="display: none">
+                        <label for="period">Renewal Period</label>
+                        <input class="form-control renew" name="renewalPeriod" type="text" placeholder="Enter in months">
+                    </div>
+
                     <div class="form-group aptChange" style="display: none">
                         <label for="newApt">New Apartment</label>
                         <select class="form-control newApartment" name="newApartment">
@@ -92,18 +97,27 @@
                 $(".aptChange").show();
                 $(".termination").hide();
                 $(".maintenance").hide();
+                $(".renewalPeriod").hide();
             } else if (text === "Terminate Lease") {
                 $(".termination").show();
                 $(".aptChange").hide();
                 $(".maintenance").hide();
+                $(".renewalPeriod").hide();
             } else if(text === "Maintenance"){
                 $(".maintenance").show();
+                $(".termination").hide();
+                $(".aptChange").hide();
+                $(".renewalPeriod").hide();
+            } else if(text === "Renewal"){
+                $(".renewalPeriod").show();
+                $(".maintenance").hide();
                 $(".termination").hide();
                 $(".aptChange").hide();
             } else {
                 $(".termination").hide();
                 $(".aptChange").hide();
                 $(".maintenance").hide();
+                $(".renewalPeriod").hide();
             }
             return text;
         });
@@ -122,7 +136,7 @@
                 data: {newApartment: newApt, changeDate: move_in_date },
                 success: function (data) {
                    alert("Successful");
-                   location = "http://arm";
+                   location = "http://localhost/apartment-rental-mgt/";
                 },
                 error: function () {
                 }
@@ -139,7 +153,7 @@
                 data: {leavingDate: date, leavingReason: reason },
                 success: function (data) {
                    alert("Successful");
-                   location = "http://arm";
+                   location = "http://localhost/apartment-rental-mgt/";
                 },
                 error: function () {
                 }
@@ -155,7 +169,24 @@
                 data: {category_id: category, request: request },
                 success: function (data) {
                    alert("Successful");
-                   location = "http://arm";
+                   location = "http://localhost/apartment-rental-mgt/";
+                },
+                error: function () {
+                }
+            });
+          } else if(request_cat === "Renewal"){
+                var url = "http://localhost/apartment-rental-mgt/tenant/renew"
+                var renewal_prd = $(".renew").val();
+                // console.log(renewal_prd);
+
+                $.ajax({
+                type: 'POST',
+                url: url,
+                data: {renewalPeriod: renewal_prd, },
+                success: function (data) {
+                   alert("Successful");
+                   console.log(data);
+                   location = "http://localhost/apartment-rental-mgt/";
                 },
                 error: function () {
                 }
